@@ -1,0 +1,9 @@
+tensorflow-cpu==2.10.1
+tensorflow-directml-plugin==0.2.0.dev221020
+numpy==1.23.5
+matplotlib==3.10.9
+pillow==12.3.0
+jupyter==1.1.1
+ipykernel==7.3.0
+protobuf==3.19.6
+tensorflow-datasets==4.8.3
