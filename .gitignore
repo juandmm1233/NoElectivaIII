@@ -2,6 +2,8 @@
 __pycache__/
 .ipynb_checkpoints/
 *.pyc
-dataset/
+/dataset/
+para_companero/resultados/
+para_companero/.venv/
 .gradio/
 _preview/
