@@ -78,3 +78,7 @@ El número para comparar con el otro modelo es `accuracy_test` dentro de `metric
 ## Notebook del otro equipo
 
 `entrenamiento_plantas_medicinales.ipynb` es el flujo con TensorFlow DirectML de la máquina principal. Sus dependencias están en el `requirements.txt` de la raíz. Las imágenes de esa copia local no se suben al repositorio.
+
+## Subset regional (Colombia / Tolima)
+
+Para el impacto local que pidió el curso, hay un flujo aparte en `regional_colombia/`. Baja fotos de iNaturalist (Tolima primero, Colombia si faltan) y entrena otro MobileNetV2. No mezcla esas imágenes con Herbify. Ver `regional_colombia/LEEME.md`.

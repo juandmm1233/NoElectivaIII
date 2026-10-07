@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Plantas medicinales · resultados</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,500&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}">
+</head>
+<body>
+  <header class="barra">
+    <a class="marca" href="#inicio">NoElectiva III</a>
+    <nav>
+      <a href="#resultados">Resultados</a>
+      <a href="#especies">Especies</a>
+      <a href="#identificar">Identificar</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="inicio" class="hero">
+      <p class="ojo">Clasificación de plantas medicinales</p>
+      <h1>Dos experimentos, las mismas hojas, distintas geografías.</h1>
+      <p class="lead">
+        MobileNetV2 entrenado primero con Herbify (India, 57 especies) y después con un subset
+        de uso medicinal en Colombia y el Tolima (10 especies, iNaturalist + solape con Herbify).
+      </p>
+      <div class="cifras">
+        <article class="cifra">
+          <span class="tag">Herbify · India</span>
+          <strong>91.2%</strong>
+          <p>accuracy en test · 57 clases · 761 fotos</p>
+        </article>
+        <article class="cifra cifra-alt">
+          <span class="tag">Regional · Tolima</span>
+          <strong>73.8%</strong>
+          <p>accuracy en test · 10 clases · 301 fotos</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="resultados" class="bloque">
+      <header class="bloque-cab">
+        <h2>Qué salió de cada entrenamiento</h2>
+        <p>El número alto de Herbify no sustituye al regional: el profesor pidió impacto local, no solo accuracy.</p>
+      </header>
+
+      <div class="pills" role="tablist">
+        <button class="pill activo" data-tab="tabla">Comparación</button>
+        <button class="pill" data-tab="herbify">Herbify</button>
+        <button class="pill" data-tab="regional">Regional</button>
+      </div>
+
+      <div class="panel activo" id="panel-tabla">
+        <table class="tabla">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Herbify</th>
+              <th>Colombia / Tolima</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><th>Modelo</th><td>MobileNetV2 (ImageNet)</td><td>MobileNetV2 (ImageNet)</td></tr>
+            <tr><th>Clases</th><td>57</td><td>10</td></tr>
+            <tr><th>Train / val / test</th><td>3408 / 734 / 761</td><td>1402 / 300 / 301</td></tr>
+            <tr><th>Accuracy test</th><td>91.2% (67 errores)</td><td>73.8% (79 errores)</td></tr>
+            <tr><th>F1 ponderado</th><td>0.914</td><td>0.737</td></tr>
+            <tr><th>Fotos</th><td>Kaggle Herbify, estudio, fondo uniforme</td><td>iNaturalist (Tolima + Colombia + Suramérica) y Herbify en guayaba y ruda</td></tr>
+            <tr><th>Límite</th><td>Especies de la India; falla fuera de dominio</td><td>Fotos de campo; especies parecidas (matarratón, yarumo, chilca)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="panel" id="panel-herbify">
+        <div class="graficas">
+          <figure>
+            <img src="{{ url_for('static', filename='img/herbify_curvas.png') }}" alt="Curvas de exactitud y pérdida, modelo Herbify">
+            <figcaption>Curvas · fase 1 congelada y fine-tuning</figcaption>
+          </figure>
+          <figure>
+            <img src="{{ url_for('static', filename='img/herbify_matriz.png') }}" alt="Matriz de confusión Herbify" class="zoomable">
+            <figcaption>Matriz de confusión en test (57 especies)</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="panel" id="panel-regional">
+        <div class="graficas">
+          <figure>
+            <img src="{{ url_for('static', filename='img/regional_curvas.png') }}" alt="Curvas del modelo regional">
+            <figcaption>Curvas · 25 épocas + 13 de fine-tuning</figcaption>
+          </figure>
+          <figure>
+            <img src="{{ url_for('static', filename='img/regional_matriz.png') }}" alt="Matriz de confusión regional" class="zoomable">
+            <figcaption>Matriz de confusión en test (10 especies)</figcaption>
+          </figure>
+        </div>
+        <div class="f1s">
+          <h3>F1 por especie (test)</h3>
+          <ul>
+            <li><span>Cola de caballo</span><b>0.885</b><i style="--v:89%"></i></li>
+            <li><span>Guayaba</span><b>0.857</b><i style="--v:86%"></i></li>
+            <li><span>Ruda</span><b>0.815</b><i style="--v:82%"></i></li>
+            <li><span>Anamú</span><b>0.792</b><i style="--v:79%"></i></li>
+            <li><span>Cilantro cimarrón</span><b>0.781</b><i style="--v:78%"></i></li>
+            <li><span>Llantén</span><b>0.727</b><i style="--v:73%"></i></li>
+            <li><span>Cordoncillo</span><b>0.725</b><i style="--v:73%"></i></li>
+            <li><span>Chilca</span><b>0.677</b><i style="--v:68%"></i></li>
+            <li><span>Yarumo</span><b>0.627</b><i style="--v:63%"></i></li>
+            <li><span>Matarratón</span><b>0.480</b><i style="--v:48%"></i></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="especies" class="bloque">
+      <header class="bloque-cab">
+        <h2>Diez plantas de uso local</h2>
+        <p>Pulsa una tarjeta para que el modelo diga a qué especie pertenece.</p>
+      </header>
+      <div class="galeria" id="galeria"></div>
+    </section>
+
+    <section id="identificar" class="bloque">
+      <header class="bloque-cab">
+        <h2>¿Qué planta es esta?</h2>
+        <p id="estado-modelos">Conectando el modelo entrenado… la primera vez tarda un poco.</p>
+      </header>
+
+      <p class="ayuda">Sube una foto. El modelo la compara con las especies que aprendió y responde cuál es.</p>
+
+      <div class="pills" id="pills-modelo" role="tablist">
+        <button class="pill activo" data-red="regional">Regional · 10 especies Tolima</button>
+        <button class="pill" data-red="herbify">Herbify · 57 especies India</button>
+        <button class="pill" data-red="ambos">Los dos modelos</button>
+      </div>
+
+      <label class="drop" id="drop-una">
+        <input type="file" accept="image/*" capture="environment" id="file-una" hidden>
+        <span>Arrastra una foto, tómala con la cámara o haz clic</span>
+        <small>JPG, PNG o WEBP · máx. 8 MB</small>
+      </label>
+      <div class="identifica oculto" id="caja-identifica">
+        <img id="preview-una" alt="Foto a identificar">
+        <div>
+          <p class="carga oculto" id="carga">Comparando la foto con el modelo…</p>
+          <div id="veredicto"></div>
+        </div>
+      </div>
+      <p class="aviso oculto" id="aviso-una"></p>
+    </section>
+  </main>
+
+  <footer>
+    <p>El modelo solo identifica la especie. No diagnostica ni recomienda usos medicinales.</p>
+    <p>Electiva · MobileNetV2 · TensorFlow 2.10</p>
+  </footer>
+
+  <div class="lightbox oculto" id="lightbox" role="dialog" aria-modal="true">
+    <img alt="">
+  </div>
+
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+{
+  "descripcion": "10 plantas medicinales usadas en Colombia y el Tolima. Fotos de iNaturalist (Research Grade, licencias abiertas).",
+  "fuentes_lista": [
+    "Humboldt: plantas medicinales endemicas y utiles de Colombia",
+    "Jardin Botanico San Jorge (Ibague): jardin medicinal",
+    "Uso tradicional en huertas del Tolima"
+  ],
+  "place_tolima_id": 12744,
+  "place_colombia_id": 7196,
+  "place_suramerica_id": 97389,
+  "especies": [
+    {
+      "cientifico": "Piper aduncum",
+      "comun": "cordoncillo",
+      "nota": "Analgésico y digestivo; Piper frecuente en el Tolima."
+    },
+    {
+      "cientifico": "Ruta graveolens",
+      "comun": "ruda",
+      "nota": "Huertas del Tolima; citar contraindicaciones."
+    },
+    {
+      "cientifico": "Plantago major",
+      "comun": "llanten",
+      "nota": "Hojas para heridas e inflamación."
+    },
+    {
+      "cientifico": "Petiveria alliacea",
+      "comun": "anamu",
+      "nota": "Anamú; uso popular inmunológico."
+    },
+    {
+      "cientifico": "Cecropia peltata",
+      "comun": "yarumo",
+      "nota": "Yarumo; uso bronquial en medicina popular."
+    },
+    {
+      "cientifico": "Equisetum bogotense",
+      "comun": "cola_de_caballo",
+      "nota": "Cola de caballo andina, especie colombiana."
+    },
+    {
+      "cientifico": "Gliricidia sepium",
+      "comun": "matarraton",
+      "nota": "Matarratón; uso etnoveterinario en el Magdalena."
+    },
+    {
+      "cientifico": "Eryngium foetidum",
+      "comun": "cilantro_cimarron",
+      "nota": "Cilantro cimarrón; digestivo."
+    },
+    {
+      "cientifico": "Psidium guajava",
+      "comun": "guayaba",
+      "nota": "Hojas contra diarrea; cultivada en el Tolima."
+    },
+    {
+      "cientifico": "Baccharis latifolia",
+      "comun": "chilca",
+      "nota": "Chilca andina; reumático y heridas."
+    }
+  ]
+}

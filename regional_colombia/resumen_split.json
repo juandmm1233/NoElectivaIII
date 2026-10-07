@@ -1,0 +1,72 @@
+[
+  {
+    "clase": "Baccharis_latifolia__chilca",
+    "total": 200,
+    "train": 140,
+    "val": 30,
+    "test": 30
+  },
+  {
+    "clase": "Cecropia_peltata__yarumo",
+    "total": 200,
+    "train": 140,
+    "val": 30,
+    "test": 30
+  },
+  {
+    "clase": "Equisetum_bogotense__cola_de_caballo",
+    "total": 200,
+    "train": 140,
+    "val": 30,
+    "test": 30
+  },
+  {
+    "clase": "Eryngium_foetidum__cilantro_cimarron",
+    "total": 200,
+    "train": 140,
+    "val": 30,
+    "test": 30
+  },
+  {
+    "clase": "Gliricidia_sepium__matarraton",
+    "total": 200,
+    "train": 140,
+    "val": 30,
+    "test": 30
+  },
+  {
+    "clase": "Petiveria_alliacea__anamu",
+    "total": 200,
+    "train": 140,
+    "val": 30,
+    "test": 30
+  },
+  {
+    "clase": "Piper_aduncum__cordoncillo",
+    "total": 200,
+    "train": 140,
+    "val": 30,
+    "test": 30
+  },
+  {
+    "clase": "Plantago_major__llanten",
+    "total": 200,
+    "train": 140,
+    "val": 30,
+    "test": 30
+  },
+  {
+    "clase": "Psidium_guajava__guayaba",
+    "total": 203,
+    "train": 142,
+    "val": 30,
+    "test": 31
+  },
+  {
+    "clase": "Ruta_graveolens__ruda",
+    "total": 200,
+    "train": 140,
+    "val": 30,
+    "test": 30
+  }
+]

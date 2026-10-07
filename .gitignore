@@ -4,6 +4,13 @@ __pycache__/
 *.pyc
 /dataset/
 para_companero/resultados/
+resultados_pesado/
+resultados_comparacion/
 para_companero/.venv/
 .gradio/
 _preview/
+regional_colombia/crudo/
+regional_colombia/dataset/
+regional_colombia/resultados/
+web/uploads/
+web/__pycache__/
