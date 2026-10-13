@@ -237,8 +237,9 @@ def main():
     parser = argparse.ArgumentParser(description="Descarga fotos regionales desde iNaturalist.")
     parser.add_argument("--solo-tolima", action="store_true", help="No completar con fotos del resto de Colombia.")
     parser.add_argument("--min", type=int, default=30, help="Minimo de fotos para dejar la clase.")
-    parser.add_argument("--max-por-clase", type=int, default=200)
+    parser.add_argument("--max-por-clase", type=int, default=450)
     parser.add_argument("--solo-partir", action="store_true", help="No descarga: solo arma train/val/test desde crudo/.")
+    parser.add_argument("--sin-partir", action="store_true", help="Solo descarga a crudo/; no arma el split.")
     args = parser.parse_args()
 
     cfg = json.loads(ESPECIES_JSON.read_text(encoding="utf-8"))
@@ -285,6 +286,10 @@ def main():
             w.writeheader()
             w.writerows(unicas)
         print("Citas iNaturalist:", ruta_meta, "filas:", len(unicas))
+
+    if args.sin_partir:
+        print("\nDescarga lista. No se parto el dataset (--sin-partir).")
+        return
 
     partir(args.min, clases_ok=CLASES_OK)
     print("\nListo. Siguiente paso:")
