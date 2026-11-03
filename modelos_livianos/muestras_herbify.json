@@ -1,0 +1,287 @@
+[
+  {
+    "clase": "Allium cepa (Onion)",
+    "img": "herb_Allium_cepa_Onion.jpg",
+    "bytes": 4358
+  },
+  {
+    "clase": "Aloe barbadensis miller (Aloevera)",
+    "img": "herb_Aloe_barbadensis_miller_Aloevera.jpg",
+    "bytes": 6990
+  },
+  {
+    "clase": "Alpinia Galanga (Rasna)",
+    "img": "herb_Alpinia_Galanga_Rasna.jpg",
+    "bytes": 6124
+  },
+  {
+    "clase": "Amaranthus Viridis (Arive-Dantu)",
+    "img": "herb_Amaranthus_Viridis_Arive_Dantu.jpg",
+    "bytes": 7545
+  },
+  {
+    "clase": "Andrographis paniculata (Nelavembu)",
+    "img": "herb_Andrographis_paniculata_Nelavembu.jpg",
+    "bytes": 9453
+  },
+  {
+    "clase": "Annona squamosa (Seethapala)",
+    "img": "herb_Annona_squamosa_Seethapala.jpg",
+    "bytes": 6687
+  },
+  {
+    "clase": "Artocarpus heterophyllus (Jackfruit)",
+    "img": "herb_Artocarpus_heterophyllus_Jackfruit.jpg",
+    "bytes": 10407
+  },
+  {
+    "clase": "Azadirachta indica (Neem)",
+    "img": "herb_Azadirachta_indica_Neem.jpg",
+    "bytes": 9062
+  },
+  {
+    "clase": "Bacopa monnieri (Bhrami)",
+    "img": "herb_Bacopa_monnieri_Bhrami.jpg",
+    "bytes": 8595
+  },
+  {
+    "clase": "Basella alba (Malabar Spinach)",
+    "img": "herb_Basella_alba_Malabar_Spinach.jpg",
+    "bytes": 9238
+  },
+  {
+    "clase": "Carica papaya (Papaya)",
+    "img": "herb_Carica_papaya_Papaya.jpg",
+    "bytes": 20929
+  },
+  {
+    "clase": "Carissa Carandas (Karanda)",
+    "img": "herb_Carissa_Carandas_Karanda.jpg",
+    "bytes": 6946
+  },
+  {
+    "clase": "Catharanthus roseus (Catharanthus)",
+    "img": "herb_Catharanthus_roseus_Catharanthus.jpg",
+    "bytes": 8084
+  },
+  {
+    "clase": "Chamaecostus cuspidatus (Insulin)",
+    "img": "herb_Chamaecostus_cuspidatus_Insulin.jpg",
+    "bytes": 8998
+  },
+  {
+    "clase": "Citrus limon (Lemon)",
+    "img": "herb_Citrus_limon_Lemon.jpg",
+    "bytes": 8373
+  },
+  {
+    "clase": "Citrus medica (herelikai)",
+    "img": "herb_Citrus_medica_herelikai.jpg",
+    "bytes": 5086
+  },
+  {
+    "clase": "Coleus amboinicus (Mexican mint_Doddpathre)",
+    "img": "herb_Coleus_amboinicus_Mexican_mint_Doddpathre.jpg",
+    "bytes": 2941
+  },
+  {
+    "clase": "Colocasia esculenta (Taro)",
+    "img": "herb_Colocasia_esculenta_Taro.jpg",
+    "bytes": 11294
+  },
+  {
+    "clase": "Coriandrum sativum (Coriander)",
+    "img": "herb_Coriandrum_sativum_Coriander.jpg",
+    "bytes": 6923
+  },
+  {
+    "clase": "Cucurbita (Pumpkin)",
+    "img": "herb_Cucurbita_Pumpkin.jpg",
+    "bytes": 13464
+  },
+  {
+    "clase": "Eclipta prostrata (Bringaraja)",
+    "img": "herb_Eclipta_prostrata_Bringaraja.jpg",
+    "bytes": 13124
+  },
+  {
+    "clase": "Ficus Auriculata (Roxburgh fig)",
+    "img": "herb_Ficus_Auriculata_Roxburgh_fig.jpg",
+    "bytes": 9135
+  },
+  {
+    "clase": "Ficus Religiosa (Peepal Tree)",
+    "img": "herb_Ficus_Religiosa_Peepal_Tree.jpg",
+    "bytes": 7546
+  },
+  {
+    "clase": "Gomphrena globosa (Globe Amarnath)",
+    "img": "herb_Gomphrena_globosa_Globe_Amarnath.jpg",
+    "bytes": 4357
+  },
+  {
+    "clase": "Graptophyllum pictum (Caricature)",
+    "img": "herb_Graptophyllum_pictum_Caricature.jpg",
+    "bytes": 11079
+  },
+  {
+    "clase": "Hibiscus rosa-sinensis (Hibiscus)",
+    "img": "herb_Hibiscus_rosa_sinensis_Hibiscus.jpg",
+    "bytes": 7604
+  },
+  {
+    "clase": "Hymenaea courbaril (Chakte)",
+    "img": "herb_Hymenaea_courbaril_Chakte.jpg",
+    "bytes": 6303
+  },
+  {
+    "clase": "Jasminum (Jasmine)",
+    "img": "herb_Jasminum_Jasmine.jpg",
+    "bytes": 7705
+  },
+  {
+    "clase": "Lawsonia inermis (Henna)",
+    "img": "herb_Lawsonia_inermis_Henna.jpg",
+    "bytes": 8988
+  },
+  {
+    "clase": "Mangifera indica (Mango)",
+    "img": "herb_Mangifera_indica_Mango.jpg",
+    "bytes": 6830
+  },
+  {
+    "clase": "Mentha (Mint)",
+    "img": "herb_Mentha_Mint.jpg",
+    "bytes": 6492
+  },
+  {
+    "clase": "Momordica dioica (Thumbai_Spiny gourd)",
+    "img": "herb_Momordica_dioica_Thumbai_Spiny_gourd.jpg",
+    "bytes": 4931
+  },
+  {
+    "clase": "Morinda citrifolia (Nooni)",
+    "img": "herb_Morinda_citrifolia_Nooni.jpg",
+    "bytes": 10435
+  },
+  {
+    "clase": "Moringa oleifera (Moringa_Drumstick)",
+    "img": "herb_Moringa_oleifera_Moringa_Drumstick.jpg",
+    "bytes": 6214
+  },
+  {
+    "clase": "Muntingia Calabura (Jamaica Cherry-Gasagase)",
+    "img": "herb_Muntingia_Calabura_Jamaica_Cherry_Gasagase.jpg",
+    "bytes": 8124
+  },
+  {
+    "clase": "Murraya koenigii (Curry)",
+    "img": "herb_Murraya_koenigii_Curry.jpg",
+    "bytes": 4169
+  },
+  {
+    "clase": "Nerium oleander (Arali)",
+    "img": "herb_Nerium_oleander_Arali.jpg",
+    "bytes": 11421
+  },
+  {
+    "clase": "Nyctanthes arbor-tristis (Parijatha)",
+    "img": "herb_Nyctanthes_arbor_tristis_Parijatha.jpg",
+    "bytes": 10695
+  },
+  {
+    "clase": "Ocimum basilicum (kamakasturi)",
+    "img": "herb_Ocimum_basilicum_kamakasturi.jpg",
+    "bytes": 5267
+  },
+  {
+    "clase": "Ocimum tenuiflorum (Tulsi)",
+    "img": "herb_Ocimum_tenuiflorum_Tulsi.jpg",
+    "bytes": 8512
+  },
+  {
+    "clase": "Papaver somniferum (Poppy seed_Gasagase)",
+    "img": "herb_Papaver_somniferum_Poppy_seed_Gasagase.jpg",
+    "bytes": 7823
+  },
+  {
+    "clase": "Phaseolus vulgaris (Beans)",
+    "img": "herb_Phaseolus_vulgaris_Beans.jpg",
+    "bytes": 11636
+  },
+  {
+    "clase": "Piper betle (Betel)",
+    "img": "herb_Piper_betle_Betel.jpg",
+    "bytes": 6161
+  },
+  {
+    "clase": "Pongamia pinnata (Pongamia_Honge)",
+    "img": "herb_Pongamia_pinnata_Pongamia_Honge.jpg",
+    "bytes": 5135
+  },
+  {
+    "clase": "Psidium guajava (Guava)",
+    "img": "herb_Psidium_guajava_Guava.jpg",
+    "bytes": 6137
+  },
+  {
+    "clase": "Punica granatum (Pomoegranate)",
+    "img": "herb_Punica_granatum_Pomoegranate.jpg",
+    "bytes": 6583
+  },
+  {
+    "clase": "Ricinus communis (Castor)",
+    "img": "herb_Ricinus_communis_Castor.jpg",
+    "bytes": 9694
+  },
+  {
+    "clase": "Rosa rubiginosa (Rose)",
+    "img": "herb_Rosa_rubiginosa_Rose.jpg",
+    "bytes": 14486
+  },
+  {
+    "clase": "Santalum Album (Sandalwood)",
+    "img": "herb_Santalum_Album_Sandalwood.jpg",
+    "bytes": 9012
+  },
+  {
+    "clase": "Saraca asoca (Ashoka)",
+    "img": "herb_Saraca_asoca_Ashoka.jpg",
+    "bytes": 8636
+  },
+  {
+    "clase": "Spinacia oleracea (Palak(Spinach))",
+    "img": "herb_Spinacia_oleracea_Palak_Spinach.jpg",
+    "bytes": 8131
+  },
+  {
+    "clase": "Syzygium Jambos (Rose Apple)",
+    "img": "herb_Syzygium_Jambos_Rose_Apple.jpg",
+    "bytes": 6641
+  },
+  {
+    "clase": "Syzygium cumini (Nerale)",
+    "img": "herb_Syzygium_cumini_Nerale.jpg",
+    "bytes": 7737
+  },
+  {
+    "clase": "Tabernaemontana Divaricata (Crape Jasmine)",
+    "img": "herb_Tabernaemontana_Divaricata_Crape_Jasmine.jpg",
+    "bytes": 7950
+  },
+  {
+    "clase": "Tamarindus indica (Tamarind)",
+    "img": "herb_Tamarindus_indica_Tamarind.jpg",
+    "bytes": 2960
+  },
+  {
+    "clase": "Tinospora cordifolia (Amruthaballi)",
+    "img": "herb_Tinospora_cordifolia_Amruthaballi.jpg",
+    "bytes": 11424
+  },
+  {
+    "clase": "Wrightia tinctoria (Badipala)",
+    "img": "herb_Wrightia_tinctoria_Badipala.jpg",
+    "bytes": 10654
+  }
+]

@@ -6,6 +6,8 @@ Las fotos NO son Herbify. Primero corre:
     python descargar_inaturalist.py
 
 Modelo: MobileNetV2 (mismo esquema de dos fases que el entrenamiento ligero).
+La capa final lleva multa L1 (1e-5) y L2 (1e-4) sobre el kernel.
+No pisa el modelo sin esa multa: escribe archivos con sufijo _l1l2.
 
     python entrenar_regional.py --prueba
     python entrenar_regional.py
@@ -32,7 +34,9 @@ DATASET = PROYECTO / "dataset"
 RESULTADOS = PROYECTO / "resultados"
 IMG = (224, 224)
 SEMILLA = 42
-MODELO_NOMBRE = "MobileNetV2_regional"
+L1 = 1e-5
+L2 = 1e-4
+MODELO_NOMBRE = "MobileNetV2_regional_L1L2"
 
 
 def configurar_gpu():
@@ -117,8 +121,13 @@ def construir_modelo(num_clases):
     x = base(x, training=False)
     x = tf.keras.layers.GlobalAveragePooling2D()(x)
     x = tf.keras.layers.Dropout(0.4)(x)
-    salidas = tf.keras.layers.Dense(num_clases, activation="softmax")(x)
-    modelo = tf.keras.Model(entradas, salidas, name="plantas_regional")
+    salidas = tf.keras.layers.Dense(
+        num_clases,
+        activation="softmax",
+        kernel_regularizer=tf.keras.regularizers.L1L2(l1=L1, l2=L2),
+        name="cabeza",
+    )(x)
+    modelo = tf.keras.Model(entradas, salidas, name="plantas_regional_l1l2")
     return modelo, base
 
 
@@ -160,7 +169,7 @@ def guardar_curvas(historial, corte):
     ax[1].legend()
     fig.suptitle(MODELO_NOMBRE)
     fig.tight_layout()
-    ruta = RESULTADOS / "curvas_regional.png"
+    ruta = RESULTADOS / "curvas_regional_l1l2.png"
     fig.savefig(ruta, dpi=120)
     plt.close(fig)
     print("Curvas:", ruta)
@@ -178,7 +187,7 @@ def evaluar(modelo, test_ds, clases):
 
     reporte = classification_report(y_true, y_pred, target_names=clases, digits=3)
     print(reporte)
-    (RESULTADOS / "reporte_regional.txt").write_text(reporte, encoding="utf-8")
+    (RESULTADOS / "reporte_regional_l1l2.txt").write_text(reporte, encoding="utf-8")
 
     cm = confusion_matrix(y_true, y_pred)
     lado = max(10, min(24, 0.35 * len(clases)))
@@ -188,9 +197,9 @@ def evaluar(modelo, test_ds, clases):
     plt.yticks(fontsize=7)
     plt.xlabel("Predicho")
     plt.ylabel("Real")
-    plt.title("Matriz de confusion - subset Colombia/Tolima")
+    plt.title("Matriz de confusion L1+L2 - subset Colombia/Tolima")
     plt.tight_layout()
-    plt.savefig(RESULTADOS / "matriz_regional.png", dpi=120)
+    plt.savefig(RESULTADOS / "matriz_regional_l1l2.png", dpi=120)
     plt.close()
 
     return {
@@ -229,7 +238,7 @@ def main():
         loss="sparse_categorical_crossentropy",
         metrics=["accuracy"],
     )
-    print("Fase 1: base ImageNet congelada")
+    print(f"Fase 1: base ImageNet congelada, cabeza con L1={L1:g} y L2={L2:g}")
     modelo.summary()
 
     t0 = time.perf_counter()
@@ -250,7 +259,7 @@ def main():
     historial, corte = unir_historial(hist1, hist2)
     guardar_curvas(historial, corte)
 
-    ruta_modelo = RESULTADOS / "modelo_regional.h5"
+    ruta_modelo = RESULTADOS / "modelo_regional_l1l2.h5"
     modelo.save(ruta_modelo)
     (RESULTADOS / "clases.json").write_text(json.dumps(clases, ensure_ascii=False, indent=2), encoding="utf-8")
 
@@ -271,13 +280,17 @@ def main():
             "imagen": 224,
             "split": "70/15/15",
             "semilla": SEMILLA,
+            "l1": L1,
+            "l2": L2,
+            "regularizacion": "L1L2 solo en el kernel de la Dense final",
             "modo_prueba": bool(args.prueba),
         }
     )
-    ruta_metricas = RESULTADOS / "metricas_regional.json"
+    ruta_metricas = RESULTADOS / "metricas_regional_l1l2.json"
     ruta_metricas.write_text(json.dumps(metricas, ensure_ascii=False, indent=2), encoding="utf-8")
 
-    print("\nListo subset regional.")
+    print("\nListo subset regional con L1 y L2.")
+    print(f"  L1 / L2:       {L1:g} / {L2:g}")
     print(f"  Accuracy test: {metricas['accuracy_test']:.3f}")
     print(f"  Top-3 test:    {metricas['top3_accuracy_test']:.3f}")
     print(f"  Tiempo:        {metricas['minutos_entrenamiento']} min")

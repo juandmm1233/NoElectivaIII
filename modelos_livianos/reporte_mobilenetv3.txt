@@ -1,0 +1,63 @@
+                                              precision    recall  f1-score   support
+
+                         Allium cepa (Onion)      1.000     0.786     0.880        14
+          Aloe barbadensis miller (Aloevera)      1.000     1.000     1.000        11
+                     Alpinia Galanga (Rasna)      1.000     1.000     1.000         8
+            Amaranthus Viridis (Arive-Dantu)      0.826     1.000     0.905        19
+         Andrographis paniculata (Nelavembu)      0.429     0.273     0.333        11
+                Annona squamosa (Seethapala)      0.700     0.778     0.737         9
+        Artocarpus heterophyllus (Jackfruit)      0.722     0.765     0.743        17
+                   Azadirachta indica (Neem)      1.000     0.818     0.900        11
+                    Bacopa monnieri (Bhrami)      0.857     0.462     0.600        13
+              Basella alba (Malabar Spinach)      0.714     0.600     0.652        25
+                      Carica papaya (Papaya)      1.000     0.706     0.828        17
+                  Carissa Carandas (Karanda)      0.923     1.000     0.960        12
+          Catharanthus roseus (Catharanthus)      0.833     0.909     0.870        11
+           Chamaecostus cuspidatus (Insulin)      0.500     0.909     0.645        11
+                        Citrus limon (Lemon)      0.826     0.864     0.844        22
+                   Citrus medica (herelikai)      0.438     0.700     0.538        10
+ Coleus amboinicus (Mexican mint_Doddpathre)      0.933     0.933     0.933        15
+                  Colocasia esculenta (Taro)      1.000     0.889     0.941         9
+              Coriandrum sativum (Coriander)      1.000     1.000     1.000        12
+                         Cucurbita (Pumpkin)      0.833     1.000     0.909        10
+              Eclipta prostrata (Bringaraja)      0.857     0.667     0.750         9
+             Ficus Auriculata (Roxburgh fig)      1.000     0.625     0.769         8
+               Ficus Religiosa (Peepal Tree)      1.000     1.000     1.000        10
+          Gomphrena globosa (Globe Amarnath)      0.778     0.778     0.778         9
+           Graptophyllum pictum (Caricature)      1.000     1.000     1.000        12
+           Hibiscus rosa-sinensis (Hibiscus)      0.875     0.538     0.667        13
+                 Hymenaea courbaril (Chakte)      0.857     0.750     0.800         8
+                          Jasminum (Jasmine)      0.714     0.667     0.690        15
+                    Lawsonia inermis (Henna)      0.667     0.545     0.600        11
+                    Mangifera indica (Mango)      0.938     0.833     0.882        18
+                               Mentha (Mint)      0.750     0.960     0.842        25
+      Momordica dioica (Thumbai_Spiny gourd)      0.615     0.889     0.727         9
+                  Morinda citrifolia (Nooni)      0.750     0.750     0.750         8
+        Moringa oleifera (Moringa_Drumstick)      1.000     0.824     0.903        17
+Muntingia Calabura (Jamaica Cherry-Gasagase)      1.000     0.667     0.800         9
+                    Murraya koenigii (Curry)      0.529     0.900     0.667        20
+                     Nerium oleander (Arali)      0.938     1.000     0.968        15
+        Nyctanthes arbor-tristis (Parijatha)      1.000     0.846     0.917        13
+              Ocimum basilicum (kamakasturi)      1.000     0.900     0.947        10
+                  Ocimum tenuiflorum (Tulsi)      0.818     0.783     0.800        23
+    Papaver somniferum (Poppy seed_Gasagase)      0.875     0.778     0.824         9
+                  Phaseolus vulgaris (Beans)      0.500     0.833     0.625        12
+                         Piper betle (Betel)      0.875     0.824     0.848        17
+           Pongamia pinnata (Pongamia_Honge)      0.857     0.857     0.857        14
+                     Psidium guajava (Guava)      0.545     0.818     0.655        22
+              Punica granatum (Pomoegranate)      0.933     0.700     0.800        20
+                   Ricinus communis (Castor)      1.000     0.857     0.923        14
+                      Rosa rubiginosa (Rose)      0.941     1.000     0.970        16
+                 Santalum Album (Sandalwood)      1.000     0.667     0.800         9
+                       Saraca asoca (Ashoka)      1.000     1.000     1.000        10
+          Spinacia oleracea (Palak(Spinach))      1.000     0.792     0.884        24
+                Syzygium Jambos (Rose Apple)      0.900     1.000     0.947         9
+                    Syzygium cumini (Nerale)      0.733     0.917     0.815        12
+  Tabernaemontana Divaricata (Crape Jasmine)      1.000     0.889     0.941         9
+                Tamarindus indica (Tamarind)      1.000     1.000     1.000        15
+         Tinospora cordifolia (Amruthaballi)      1.000     0.333     0.500        12
+               Wrightia tinctoria (Badipala)      0.778     0.875     0.824         8
+
+                                    accuracy                          0.816       761
+                                   macro avg      0.852     0.815     0.819       761
+                                weighted avg      0.846     0.816     0.817       761

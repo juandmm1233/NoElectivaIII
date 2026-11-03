@@ -1,9 +1,10 @@
 {
-  "descripcion": "10 plantas medicinales usadas en Colombia y el Tolima. Fotos de iNaturalist (Research Grade, licencias abiertas).",
+  "descripcion": "20 plantas de Colombia: 10 medicinales de uso local, 6 emblematicas/nativas andinas y 4 de huerta andina. Fotos de iNaturalist (Research Grade, licencias abiertas).",
   "fuentes_lista": [
     "Humboldt: plantas medicinales endemicas y utiles de Colombia",
     "Jardin Botanico San Jorge (Ibague): jardin medicinal",
-    "Uso tradicional en huertas del Tolima"
+    "Uso tradicional en huertas del Tolima",
+    "Especies emblematicas de Colombia con >=400 fotos abiertas en iNaturalist"
   ],
   "place_tolima_id": 12744,
   "place_colombia_id": 7196,
@@ -58,6 +59,56 @@
       "cientifico": "Baccharis latifolia",
       "comun": "chilca",
       "nota": "Chilca andina; reumático y heridas."
+    },
+    {
+      "cientifico": "Espeletia grandiflora",
+      "comun": "frailejon",
+      "nota": "Frailejón de páramo; emblemática andina."
+    },
+    {
+      "cientifico": "Quercus humboldtii",
+      "comun": "roble_andino",
+      "nota": "Roble andino; nativa de Colombia."
+    },
+    {
+      "cientifico": "Ceroxylon quindiuense",
+      "comun": "palma_de_cera",
+      "nota": "Palma de cera del Quindío; árbol nacional, endémica."
+    },
+    {
+      "cientifico": "Phytolacca bogotensis",
+      "comun": "cargamanto",
+      "nota": "Phytolacca andina; uso tradicional."
+    },
+    {
+      "cientifico": "Weinmannia tomentosa",
+      "comun": "encenillo",
+      "nota": "Encenillo; bosque andino de Colombia."
+    },
+    {
+      "cientifico": "Cattleya trianae",
+      "comun": "cattleya",
+      "nota": "Flor nacional de Colombia."
+    },
+    {
+      "cientifico": "Solanum quitoense",
+      "comun": "lulo",
+      "nota": "Lulo; frutal andino de huerta."
+    },
+    {
+      "cientifico": "Bocconia frutescens",
+      "comun": "trompeto",
+      "nota": "Trompeto; uso medicinal andino."
+    },
+    {
+      "cientifico": "Physalis peruviana",
+      "comun": "uchuva",
+      "nota": "Uchuva; frutal andino."
+    },
+    {
+      "cientifico": "Theobroma cacao",
+      "comun": "cacao",
+      "nota": "Cacao; cultivo nativo."
     }
   ]
 }

@@ -1,0 +1,22 @@
+{
+  "loss_test": 0.39309510588645935,
+  "accuracy_test": 0.8804205060005188,
+  "top3_accuracy_test": 0.96714848279953,
+  "imagenes_test": 761,
+  "errores_test": 91,
+  "segundos_evaluacion": 5.0,
+  "modelo": "MobileNetV2",
+  "parametros": 2331001,
+  "minutos_entrenamiento": 16.9,
+  "tamano_mb": 22.89,
+  "batch": 16,
+  "epochs_fase1_pedidas": 20,
+  "epochs_fase2_pedidas": 15,
+  "epocas_fase1_corridas": 14,
+  "epocas_fase2_corridas": 15,
+  "mejor_val_accuracy": 0.8801090121269226,
+  "imagen": 224,
+  "split": "70/15/15",
+  "semilla": 42,
+  "modo_prueba": false
+}

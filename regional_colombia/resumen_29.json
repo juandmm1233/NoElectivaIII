@@ -1,0 +1,213 @@
+{
+  "clases": 29,
+  "imagenes": 14580,
+  "train": 10201,
+  "val": 2178,
+  "test": 2201,
+  "ruda_duplicadas_omitidas": 89,
+  "por_clase": [
+    {
+      "clase": "Aloe_vera__aloe_vera",
+      "total": 512,
+      "train": 358,
+      "val": 77,
+      "test": 77
+    },
+    {
+      "clase": "Baccharis_latifolia__chilca",
+      "total": 450,
+      "train": 315,
+      "val": 67,
+      "test": 68
+    },
+    {
+      "clase": "Bixa_orellana__achiote",
+      "total": 613,
+      "train": 429,
+      "val": 92,
+      "test": 92
+    },
+    {
+      "clase": "Bocconia_frutescens__trompeto",
+      "total": 450,
+      "train": 315,
+      "val": 67,
+      "test": 68
+    },
+    {
+      "clase": "Calendula_officinalis__calendula",
+      "total": 554,
+      "train": 387,
+      "val": 83,
+      "test": 84
+    },
+    {
+      "clase": "Cattleya_trianae__cattleya",
+      "total": 450,
+      "train": 315,
+      "val": 67,
+      "test": 68
+    },
+    {
+      "clase": "Cecropia_peltata__yarumo",
+      "total": 450,
+      "train": 315,
+      "val": 67,
+      "test": 68
+    },
+    {
+      "clase": "Ceroxylon_quindiuense__palma_de_cera",
+      "total": 450,
+      "train": 315,
+      "val": 67,
+      "test": 68
+    },
+    {
+      "clase": "Dysphania_ambrosioides__paico",
+      "total": 432,
+      "train": 302,
+      "val": 65,
+      "test": 65
+    },
+    {
+      "clase": "Equisetum_bogotense__cola_de_caballo",
+      "total": 450,
+      "train": 315,
+      "val": 67,
+      "test": 68
+    },
+    {
+      "clase": "Eryngium_foetidum__cilantro_cimarron",
+      "total": 450,
+      "train": 315,
+      "val": 67,
+      "test": 68
+    },
+    {
+      "clase": "Espeletia_grandiflora__frailejon",
+      "total": 450,
+      "train": 315,
+      "val": 67,
+      "test": 68
+    },
+    {
+      "clase": "Gliricidia_sepium__matarraton",
+      "total": 450,
+      "train": 315,
+      "val": 67,
+      "test": 68
+    },
+    {
+      "clase": "Lippia_alba__pronto_alivio",
+      "total": 594,
+      "train": 415,
+      "val": 89,
+      "test": 90
+    },
+    {
+      "clase": "Melissa_officinalis__toronjil",
+      "total": 498,
+      "train": 348,
+      "val": 75,
+      "test": 75
+    },
+    {
+      "clase": "Moringa_oleifera__moringa",
+      "total": 749,
+      "train": 524,
+      "val": 112,
+      "test": 113
+    },
+    {
+      "clase": "Petiveria_alliacea__anamu",
+      "total": 450,
+      "train": 315,
+      "val": 67,
+      "test": 68
+    },
+    {
+      "clase": "Physalis_peruviana__uchuva",
+      "total": 450,
+      "train": 315,
+      "val": 67,
+      "test": 68
+    },
+    {
+      "clase": "Phytolacca_bogotensis__cargamanto",
+      "total": 450,
+      "train": 315,
+      "val": 67,
+      "test": 68
+    },
+    {
+      "clase": "Piper_aduncum__cordoncillo",
+      "total": 450,
+      "train": 315,
+      "val": 67,
+      "test": 68
+    },
+    {
+      "clase": "Plantago_major__llanten",
+      "total": 450,
+      "train": 315,
+      "val": 67,
+      "test": 68
+    },
+    {
+      "clase": "Psidium_guajava__guayaba",
+      "total": 450,
+      "train": 315,
+      "val": 67,
+      "test": 68
+    },
+    {
+      "clase": "Quercus_humboldtii__roble_andino",
+      "total": 450,
+      "train": 315,
+      "val": 67,
+      "test": 68
+    },
+    {
+      "clase": "Ruta_graveolens__ruda",
+      "total": 973,
+      "train": 681,
+      "val": 146,
+      "test": 146
+    },
+    {
+      "clase": "Salvia_rosmarinus__romero",
+      "total": 571,
+      "train": 399,
+      "val": 86,
+      "test": 86
+    },
+    {
+      "clase": "Sambucus_nigra__sauco",
+      "total": 534,
+      "train": 373,
+      "val": 80,
+      "test": 81
+    },
+    {
+      "clase": "Solanum_quitoense__lulo",
+      "total": 450,
+      "train": 315,
+      "val": 67,
+      "test": 68
+    },
+    {
+      "clase": "Theobroma_cacao__cacao",
+      "total": 450,
+      "train": 315,
+      "val": 67,
+      "test": 68
+    },
+    {
+      "clase": "Weinmannia_tomentosa__encenillo",
+      "total": 450,
+      "train": 315,
+      "val": 67,
+      "test": 68
+    }
+  ]
+}

@@ -57,7 +57,7 @@ a { color: var(--leaf); }
 
 .hero {
   padding: 4.5rem 6vw 3rem;
-  max-width: 1200px;
+  max-width: 1280px;
 }
 .ojo {
   text-transform: uppercase;
@@ -81,9 +81,8 @@ a { color: var(--leaf); }
 
 .cifras {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
   gap: 1rem;
-  max-width: 720px;
 }
 .cifra {
   background: var(--leaf-deep);
@@ -91,7 +90,9 @@ a { color: var(--leaf); }
   padding: 1.4rem 1.5rem 1.2rem;
   border-radius: 18px;
 }
-.cifra-alt { background: var(--clay); color: #fff6ea; }
+.cifra.tono-leaf { background: var(--leaf); }
+.cifra.tono-clay { background: var(--clay); color: #fff6ea; }
+.cifra.tono-gold { background: #8c6a24; color: #fff8e8; }
 .cifra .tag {
   font-size: 0.75rem;
   letter-spacing: 0.08em;
@@ -135,8 +136,10 @@ a { color: var(--leaf); }
 .panel, .modo { display: none; }
 .panel.activo, .modo.activo { display: block; }
 
+.tabla-scroll { overflow-x: auto; margin-bottom: 1.4rem; }
 .tabla {
   width: 100%;
+  min-width: 760px;
   border-collapse: collapse;
   background: var(--card);
   border-radius: 16px;
@@ -157,8 +160,8 @@ a { color: var(--leaf); }
 
 .graficas {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1rem;
+  grid-template-columns: minmax(0, 920px);
+  gap: 1.2rem;
 }
 .graficas figure {
   margin: 0;
@@ -263,7 +266,20 @@ a { color: var(--leaf); }
   padding: 1.2rem 1.3rem 1.3rem;
   border-top: 6px solid var(--leaf);
 }
-.veredicto.alt { border-top-color: var(--clay); }
+.veredicto.tono-clay { border-top-color: var(--clay); }
+.veredicto.tono-gold { border-top-color: var(--gold); }
+.veredicto.tono-deep { border-top-color: var(--leaf-deep); }
+.veredictos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.8rem;
+}
+.grupo-esp { margin-top: 1.8rem; }
+.grupo-esp h3 {
+  font-family: Fraunces, serif;
+  font-size: 1.45rem;
+  margin: 0 0 0.9rem;
+}
 .veredicto .etiqueta {
   font-size: 0.75rem;
   letter-spacing: 0.1em;
@@ -339,7 +355,9 @@ a { color: var(--leaf); }
   background: var(--leaf);
   border-radius: inherit;
 }
-.carta-modelo.alt .barra-p span { background: var(--clay); }
+.veredicto.tono-clay .barra-p span { background: var(--clay); }
+.veredicto.tono-gold .barra-p span { background: var(--gold); }
+.veredicto.tono-deep .barra-p span { background: var(--leaf-deep); }
 .top-item { display: flex; justify-content: space-between; gap: 1rem; font-size: 0.92rem; }
 .badge {
   display: inline-block;

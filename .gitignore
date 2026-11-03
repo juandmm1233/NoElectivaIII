@@ -1,4 +1,5 @@
 .venv/
+.venv-web/
 __pycache__/
 .ipynb_checkpoints/
 *.pyc
@@ -11,6 +12,8 @@ para_companero/.venv/
 _preview/
 regional_colombia/crudo/
 regional_colombia/dataset/
+regional_colombia/dataset_29/
 regional_colombia/resultados/
 web/uploads/
+web/.cache_h5/
 web/__pycache__/

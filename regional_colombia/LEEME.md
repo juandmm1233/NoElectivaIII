@@ -1,9 +1,11 @@
 # Subset regional: plantas medicinales de Colombia / Tolima
 
 Responde al comentario del profesor: Herbify es de la India. Este flujo usa
-**iNaturalist** (Research Grade, licencias abiertas) y **10 especies** de uso medicinal
-en Colombia/Tolima (Tolima primero; si faltan fotos, completa con Colombia).
-La lista está en `especies.json`.
+**iNaturalist** (Research Grade, licencias abiertas) y las especies de `especies.json`
+(medicinales de uso local, emblemáticas andinas y frutales de huerta).
+Tolima primero; si faltan fotos, completa con Colombia y Suramérica.
+El identificador usa un solo modelo regional. El de 10 clases queda archivado
+en `resultados/modelo_regional_10clases.h5`.
 
 No sustituye el experimento Herbify. Es un segundo entrenamiento para impacto regional.
 
@@ -41,7 +43,15 @@ python entrenar_regional.py --prueba
 python entrenar_regional.py
 ```
 
-Sale en `resultados/`: modelo, matriz, curvas y métricas.
+Sale en `resultados/` con sufijo `_l1l2`: modelo, matriz, curvas y métricas. No reemplaza `modelo_regional.h5`.
+
+## 3. Regularización L1 y L2
+
+`entrenar_regional.py` multa el kernel de la capa final con L1 = 1e-5 y L2 = 1e-4. Dropout, augmentación y parada temprana siguen igual. Se lanza con los comandos de la sección anterior.
+
+Ese entrenamiento escribe `modelo_regional_l1l2.h5`, `metricas_regional_l1l2.json`, `curvas_regional_l1l2.png` y `matriz_regional_l1l2.png`.
+
+Las cifras de la web (77.4% en test) son el modelo sin esa multa sobre los pesos. La defensa de arquitectura, datos y métricas está en la sección 10 de `entrenamiento_regional_colombia.ipynb`.
 
 ## Citar
 
