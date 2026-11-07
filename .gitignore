@@ -17,3 +17,12 @@ regional_colombia/resultados/
 web/uploads/
 web/.cache_h5/
 web/__pycache__/
+Modelos_livianos.zip
+
+# Imagenes locales: se quedan en el disco y no entran a la lista de cambios.
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.gif
+*.bmp

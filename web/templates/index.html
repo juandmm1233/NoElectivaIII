@@ -14,8 +14,10 @@
     <a class="marca" href="#inicio">NoElectiva III</a>
     <nav>
       <a href="#resultados">Resultados</a>
+      <a href="#arquitecturas">Arquitecturas</a>
       <a href="#especies">Especies</a>
       <a href="#identificar">Identificar</a>
+      <a href="#atencion">Atención</a>
     </nav>
   </header>
 
@@ -33,7 +35,7 @@
     <section id="resultados" class="bloque">
       <header class="bloque-cab">
         <h2>Qué salió de cada entrenamiento</h2>
-        <p>Los tres de Herbify comparten el mismo split. El regional cambia de flora y de tipo de foto, así que su accuracy no se resta directo de la de la India.</p>
+        <p>Los tres de Herbify comparten el mismo split. El regional cambia de flora y de tipo de foto, así que su accuracy no se resta directo de la de la India. Al final van ResNet50, EfficientNetB0, MobileNetV2 y MobileNetV3 del último entrenamiento, con el mismo reparto de 57 especies.</p>
       </header>
       <div class="tabla-scroll">
         <table class="tabla">
@@ -43,6 +45,23 @@
       </div>
       <div class="pills" id="pills-graficas" role="tablist"></div>
       <div id="paneles"></div>
+    </section>
+
+    <section id="arquitecturas" class="bloque">
+      <header class="bloque-cab">
+        <h2>La misma prueba, cuatro arquitecturas</h2>
+        <p>Herbify, 57 especies y el mismo reparto. Las cifras salen de los JSON del entrenamiento y la fila vacía se llena cuando ese modelo termina.</p>
+      </header>
+      <p class="ayuda" id="arquitecturas-estado">Leyendo las métricas…</p>
+      <div class="tabla-scroll">
+        <table class="tabla">
+          <thead><tr id="arq-head"></tr></thead>
+          <tbody id="arq-body"></tbody>
+        </table>
+      </div>
+      <div id="arq-barras" class="barras-acc"></div>
+      <div id="arq-frases" class="frases"></div>
+      <div id="arq-figuras" class="arq-figuras"></div>
     </section>
 
     <section id="especies" class="bloque">
@@ -58,7 +77,7 @@
         <h2>¿Qué planta es esta?</h2>
         <p id="estado-modelos">Cargando el catálogo…</p>
       </header>
-      <p class="ayuda">Elige uno, varios o todos. La primera foto de cada red tarda mientras entran los pesos a memoria.</p>
+      <p class="ayuda">Elige uno, varios o todos. La primera foto de cada red tarda mientras entran los pesos a memoria. Debajo queda la zona en la que se fijó cada uno.</p>
       <div class="pills" id="pills-modelo" role="group" aria-label="Modelos a consultar"></div>
       <label class="drop" id="drop-una">
         <input type="file" accept="image/*" capture="environment" id="file-una" hidden>
@@ -68,11 +87,19 @@
       <div class="identifica oculto" id="caja-identifica">
         <img id="preview-una" alt="Foto a identificar">
         <div>
-          <p class="carga oculto" id="carga">Cargando los modelos y comparando la foto…</p>
+          <p class="carga oculto" id="carga">Cargando los modelos, comparando la foto y marcando la zona de cada uno…</p>
           <div class="veredictos" id="veredicto"></div>
         </div>
       </div>
       <p class="aviso oculto" id="aviso-una"></p>
+    </section>
+
+    <section id="atencion" class="bloque">
+      <header class="bloque-cab">
+        <h2>En qué se fija cada modelo</h2>
+        <p id="atencion-nota">Pulsa una especie o sube una foto en Identificar. El rojo marca la zona que más empujó el nombre elegido. Sale de Grad-CAM, en la última convolución, y solo vale para esa respuesta.</p>
+      </header>
+      <div id="atencion-grid" class="atencion-grid"></div>
     </section>
   </main>
 

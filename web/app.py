@@ -5,6 +5,7 @@ Desde la raiz del repo, con el entorno de la web (Python 3.12, TensorFlow 2.21, 
     .\\.venv-web\\Scripts\\python.exe web\\app.py
 
 Luego abre http://127.0.0.1:5050
+En el mismo Wi-Fi, el teléfono entra por la IP de esta máquina, puerto 5050.
 
 El .venv de entrenamiento sigue en TensorFlow 2.10 y no abre los .keras.
 """
@@ -50,6 +51,49 @@ _EQUIPO = {
 }
 _SPLIT_HERBIFY = {"train": 3408, "val": 734}
 _SPLIT_REGIONAL = {"train": 10201, "val": 2178}
+SALIDA_COMPARACION = RAIZ / "resultados_comparacion"
+_COMPARACION = [
+    {
+        "id": "resnet50",
+        "nombre": "ResNet50",
+        "rol": "Red pesada. Es el profesor de MobileNetV3.",
+        "metricas": ["metricas_resnet50.json"],
+        "curvas": ["curvas_resnet50.png"],
+        "matriz": ["matriz_resnet50.png"],
+    },
+    {
+        "id": "efficientnetb0",
+        "nombre": "EfficientNetB0",
+        "rol": "Red intermedia, mismo protocolo de dos fases.",
+        "metricas": ["metricas_efficientnetb0.json"],
+        "curvas": ["curvas_efficientnetb0.png"],
+        "matriz": ["matriz_efficientnetb0.png"],
+    },
+    {
+        "id": "mobilenetv2",
+        "nombre": "MobileNetV2",
+        "rol": "Red ligera entrenada solo con la etiqueta.",
+        "metricas": ["metricas_mobilenetv2.json"],
+        "curvas": ["curvas_mobilenetv2.png"],
+        "matriz": ["matriz_mobilenetv2.png"],
+    },
+    {
+        "id": "mobilenetv3",
+        "nombre": "MobileNetV3",
+        "rol": "Alumno de ResNet50: etiqueta real y probabilidades del profesor.",
+        "metricas": [
+            "metricas_mobilenetv3_desde_resnet50.json",
+            "metricas_mobilenetv3.json",
+        ],
+        "curvas": ["curvas_mobilenetv3.png", "curvas_mobilenetv3small.png"],
+        "matriz": [
+            "matriz_mobilenetv3.png",
+            "matriz_mobilenetv3small.png",
+        ],
+        "fallo": ["fallo_mobilenetv3.json"],
+        "modelo": ["modelo_mobilenetv3_desde_resnet50.h5"],
+    },
+]
 
 
 def _ficha(
@@ -409,6 +453,133 @@ def cargar_uno(info: dict):
         with keras.utils.custom_object_scope({"TFOpLambda": _capa_lambda()}):
             info["objeto"] = keras.models.load_model(_ruta_h5(info["ruta"]), compile=False)
         info["error_carga"] = None
+        try:
+            _preparar_atencion(info)
+        except Exception as exc:
+            info["atencion_ok"] = False
+            info["atencion_error"] = str(exc)
+
+
+def _ultima_conv2d(capa):
+    hallada = None
+    vistos = set()
+
+    def visitar(actual):
+        nonlocal hallada
+        marca = id(actual)
+        if marca in vistos:
+            return
+        vistos.add(marca)
+        if actual.__class__.__name__ == "Conv2D":
+            hallada = actual
+        for sub in getattr(actual, "layers", []):
+            visitar(sub)
+
+    visitar(capa)
+    return hallada
+
+
+def _aplicar_capa(capa, tensor):
+    if capa.__class__.__name__ != "TFOpLambda":
+        return capa(tensor, training=False)
+    import tensorflow as tf
+
+    fn = capa._fn
+    if isinstance(fn, str):
+        obj = tf
+        for parte in fn.split("."):
+            obj = getattr(obj, parte)
+        fn = obj
+    kwargs = {}
+    nodos = getattr(capa, "_inbound_nodes", [])
+    if nodos is not None and len(nodos):
+        kwargs = {
+            clave: valor
+            for clave, valor in nodos[0].arguments.kwargs.items()
+            if clave != "name"
+        }
+    return fn(tensor, **kwargs)
+
+
+def _preparar_atencion(info: dict):
+    import keras
+
+    modelo = info["objeto"]
+    previas = []
+    posteriores = []
+    base = None
+    for capa in modelo.layers:
+        if capa.__class__.__name__ == "InputLayer":
+            continue
+        anidada = capa.__class__.__name__ in {"Functional", "Model"} and len(getattr(capa, "layers", [])) > 8
+        if base is None and anidada:
+            base = capa
+            continue
+        if base is None:
+            previas.append(capa)
+        else:
+            posteriores.append(capa)
+    if base is None:
+        info["atencion_ok"] = False
+        return
+    conv = _ultima_conv2d(base)
+    if conv is None:
+        info["atencion_ok"] = False
+        return
+    salida_base = base.output
+    if isinstance(salida_base, (list, tuple)):
+        mapas_4d = [tensor for tensor in salida_base if len(getattr(tensor, "shape", [])) == 4]
+        salida_base = mapas_4d[-1] if mapas_4d else salida_base[-1]
+    info["atencion_previas"] = previas
+    info["atencion_posteriores"] = posteriores
+    info["atencion_sub"] = keras.Model(base.inputs, [conv.output, salida_base])
+    info["atencion_ok"] = True
+
+
+def _superponer(rgb, calor):
+    import numpy as np
+
+    peso = calor.astype("float32")[..., None]
+    rojo = np.zeros_like(rgb, dtype="float32")
+    rojo[..., 0] = 176
+    rojo[..., 1] = 48
+    rojo[..., 2] = 32
+    mezcla = rgb * (1 - 0.65 * peso) + rojo * (0.65 * peso)
+    return np.clip(mezcla, 0, 255).astype("uint8")
+
+
+def _atencion_png(info: dict, imagen: Image.Image, indice: int) -> str | None:
+    if not info.get("atencion_ok"):
+        return None
+    import base64
+    from io import BytesIO
+
+    import numpy as np
+    import tensorflow as tf
+
+    arr = np.asarray(imagen.convert("RGB").resize(IMG), dtype="float32")
+    lote = tf.constant(arr[None, ...])
+    with tf.GradientTape() as cinta:
+        x = lote
+        for capa in info["atencion_previas"]:
+            x = _aplicar_capa(capa, x)
+        mapas, x = info["atencion_sub"](x, training=False)
+        if isinstance(x, (list, tuple)):
+            x = x[-1]
+        for capa in info["atencion_posteriores"]:
+            x = _aplicar_capa(capa, x)
+        puntaje = x[:, indice]
+    gradiente = cinta.gradient(puntaje, mapas)
+    if gradiente is None:
+        return None
+    pesos = tf.reduce_mean(gradiente, axis=(1, 2))
+    calor = tf.nn.relu(tf.reduce_sum(mapas[0] * pesos[0], axis=-1))
+    calor = calor / (tf.reduce_max(calor) + 1e-8)
+    calor = tf.image.resize(calor[..., None], IMG).numpy()[..., 0]
+    salida = Image.fromarray(_superponer(arr, calor))
+    buffer = BytesIO()
+    salida.save(buffer, format="JPEG", quality=85)
+    return "data:image/jpeg;base64," + base64.b64encode(buffer.getvalue()).decode("ascii")
 
 
 def _predecir_uno(modelo, nombres, imagen: Image.Image) -> list[dict]:
@@ -472,9 +643,131 @@ def _acuerdo(bloques: dict) -> dict:
     return {"herbify": acuerdo_herbify, "nombre_cientifico": acuerdo_nombre}
 
 
+def _archivo_comparacion(nombres: list[str]) -> Path | None:
+    for nombre in nombres:
+        ruta = SALIDA_COMPARACION / nombre
+        if ruta.is_file():
+            return ruta
+    return None
+
+
+def _url_comparacion(ruta: Path | None) -> str | None:
+    if ruta is None:
+        return None
+    version = int(ruta.stat().st_mtime)
+    return f"/comparacion-img/{ruta.name}?v={version}"
+
+
+def _frases_comparacion(modelos: list[dict]) -> list[str]:
+    listos = [m for m in modelos if m["estado"] == "listo" and m["accuracy"] is not None]
+    frases = []
+    profesor = next((m for m in listos if m["id"] == "resnet50"), None)
+    if profesor and profesor.get("parametros"):
+        for modelo in listos:
+            if modelo["id"] == "resnet50" or not modelo.get("parametros"):
+                continue
+            puntos = (modelo["accuracy"] - profesor["accuracy"]) * 100
+            relacion = modelo["parametros"] / profesor["parametros"]
+            frases.append(
+                f"{modelo['nombre']} queda {puntos:+.1f} puntos de accuracy frente a ResNet50 "
+                f"y usa {relacion:.2f} veces sus parámetros."
+            )
+    v2 = next((m for m in listos if m["id"] == "mobilenetv2"), None)
+    v3 = next((m for m in listos if m["id"] == "mobilenetv3"), None)
+    if v2 and v3:
+        puntos = (v3["accuracy"] - v2["accuracy"]) * 100
+        frases.append(
+            f"MobileNetV3, enseñado por ResNet50, queda {puntos:+.1f} puntos "
+            "frente a MobileNetV2 entrenado solo con las etiquetas."
+        )
+    pendientes = [m["nombre"] for m in modelos if m["estado"] == "pendiente"]
+    if pendientes:
+        frases.append(
+            "Todavía falta "
+            + ", ".join(pendientes)
+            + ". Esta tabla vuelve a leer el disco mientras ese entrenamiento sigue."
+        )
+    for modelo in modelos:
+        if modelo["estado"] == "fallo" and modelo.get("val_accuracy") is not None:
+            frases.append(
+                f"{modelo['nombre']} terminó el entrenamiento y llegó a "
+                f"{modelo['val_accuracy'] * 100:.1f}% de accuracy en validación. "
+                "La evaluación en test falló, así que no hay gráfica."
+            )
+    return frases
+
+
+def _comparacion_publica() -> dict:
+    modelos = []
+    for item in _COMPARACION:
+        datos = _leer_json(_archivo_comparacion(item["metricas"]))
+        curvas = _archivo_comparacion(item["curvas"])
+        matriz = _archivo_comparacion(item["matriz"])
+        fallo = _leer_json(_archivo_comparacion(item.get("fallo") or []))
+        modelo_guardado = _archivo_comparacion(item.get("modelo") or [])
+        listo = bool(datos)
+        fallo_visible = (not listo) and bool(fallo) and modelo_guardado is not None
+        if listo:
+            estado = "listo"
+        elif fallo_visible:
+            estado = "fallo"
+        else:
+            estado = "pendiente"
+        modelos.append(
+            {
+                "id": item["id"],
+                "nombre": datos.get("modelo") or item["nombre"],
+                "rol": item["rol"],
+                "estado": estado,
+                "accuracy": datos.get("accuracy_test"),
+                "val_accuracy": fallo.get("val_accuracy"),
+                "error": fallo.get("error"),
+                "top3": datos.get("top3_accuracy_test"),
+                "parametros": datos.get("parametros") or fallo.get("parametros"),
+                "tamano_mb": datos.get("tamano_mb")
+                or (
+                    round(modelo_guardado.stat().st_size / (1024 * 1024), 2)
+                    if modelo_guardado is not None
+                    else None
+                ),
+                "minutos": datos.get("minutos_entrenamiento"),
+                "errores": datos.get("errores_test"),
+                "test": datos.get("imagenes_test"),
+                "profesor": datos.get("profesor"),
+                "curvas": _url_comparacion(curvas),
+                "matriz": _url_comparacion(matriz),
+            }
+        )
+    pendientes = sum(1 for m in modelos if m["estado"] == "pendiente")
+    return {
+        "split": "Herbify, 57 especies, 3408 train / 734 val / 761 test, semilla 42",
+        "pendientes": pendientes,
+        "frases": _frases_comparacion(modelos),
+        "modelos": modelos,
+    }
+
+
 @app.get("/")
 def inicio():
     return render_template("index.html")
+
+
+@app.get("/api/comparacion")
+def api_comparacion():
+    return jsonify(_comparacion_publica())
+
+
+@app.get("/comparacion-img/<nombre>")
+def comparacion_img(nombre):
+    permitidos = {
+        archivo
+        for item in _COMPARACION
+        for archivo in item["metricas"] + item["curvas"] + item["matriz"]
+    }
+    permitidos = {nombre_archivo for nombre_archivo in permitidos if nombre_archivo.endswith(".png")}
+    if nombre not in permitidos:
+        return "No encontrado", 404
+    return send_from_directory(SALIDA_COMPARACION, nombre)
 
 
 @app.get("/api/modelos")
@@ -523,12 +816,19 @@ def predecir():
             continue
         try:
             cargar_uno(info)
+            top = _predecir_uno(info["objeto"], info["nombres"], img)
+            try:
+                indice = info["nombres"].index(top[0]["id"]) if top else 0
+                atencion = _atencion_png(info, img, indice)
+            except Exception:
+                atencion = None
             bloques[modelo_id] = {
                 "disponible": True,
                 "nombre": info["nombre"],
                 "vocab": info["vocab"],
                 "tono": info["tono"],
-                "top": _predecir_uno(info["objeto"], info["nombres"], img),
+                "top": top,
+                "atencion": atencion,
             }
         except Exception as exc:
             info["error_carga"] = str(exc)
@@ -557,4 +857,4 @@ def muestras(nombre):
 
 
 if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=5050, debug=False, threaded=True)
+    app.run(host="0.0.0.0", port=5050, debug=False, threaded=True)
