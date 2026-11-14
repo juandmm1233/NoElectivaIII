@@ -35,7 +35,7 @@
     <section id="resultados" class="bloque">
       <header class="bloque-cab">
         <h2>Qué salió de cada entrenamiento</h2>
-        <p>Los tres de Herbify comparten el mismo split. El regional cambia de flora y de tipo de foto, así que su accuracy no se resta directo de la de la India. Al final van ResNet50, EfficientNetB0, MobileNetV2 y MobileNetV3 del último entrenamiento, con el mismo reparto de 57 especies.</p>
+        <p>Los tres de Herbify comparten el mismo split y se entrenaron sin L1/L2. En Colombia, el MobileNetV2 de 20 especies se corrió dos veces sobre las mismas fotos: uno sin L1/L2 y otro con L1 = 1e-5 y L2 = 1e-4 solo en la capa final. El de 29 especies, el ResNet50 regional y el 2nd estudiante también van sin esa multa. Al final van ResNet50, EfficientNetB0, MobileNetV2 y MobileNetV3 de Herbify.</p>
       </header>
       <div class="tabla-scroll">
         <table class="tabla">
@@ -112,6 +112,6 @@
     <img alt="">
   </div>
 
-  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/app.js') }}?v=l1l2"></script>
 </body>
 </html>
