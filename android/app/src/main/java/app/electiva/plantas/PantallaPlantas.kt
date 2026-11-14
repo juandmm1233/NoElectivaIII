@@ -1,6 +1,7 @@
 package app.electiva.plantas
 
 import android.Manifest
+import android.graphics.Bitmap
 import android.content.pm.PackageManager
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.PickVisualMediaRequest
@@ -43,6 +44,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -60,7 +62,16 @@ import java.util.Locale
 import java.util.concurrent.Executor
 
 @Composable
-fun PantallaPlantas(modelo: PlantasViewModel) {
+@OptIn(ExperimentalLayoutApi::class)
+fun PantallaPlantas(
+    modelo: PlantasViewModel,
+    estudiante: String,
+    avisoCampo: String?,
+    guardando: Boolean,
+    alHistorial: () -> Unit,
+    alSalir: () -> Unit,
+    alGuardar: (Bitmap, Etiqueta, String, String) -> Unit,
+) {
     val contexto = LocalContext.current
     val desplazamiento = rememberScrollState()
     var camaraLista by remember { mutableStateOf<ImageCapture?>(null) }
@@ -77,6 +88,12 @@ fun PantallaPlantas(modelo: PlantasViewModel) {
     }
     val foto = modelo.foto
     val render = remember(foto) { foto?.asImageBitmap() }
+    var especieClave by rememberSaveable { mutableStateOf("") }
+    var nota by rememberSaveable { mutableStateOf("") }
+    val candidatos = candidatosDe(modelo.resultados)
+    val claveActual = especieClave.takeIf { clave ->
+        candidatos.any { claveCientifica(it.cientifico) == clave }
+    } ?: candidatos.firstOrNull()?.let { claveCientifica(it.cientifico) }.orEmpty()
 
     Column(
         modifier = Modifier
@@ -87,11 +104,24 @@ fun PantallaPlantas(modelo: PlantasViewModel) {
             .padding(20.dp),
         verticalArrangement = Arrangement.spacedBy(14.dp),
     ) {
-        Text("Plantas", style = MaterialTheme.typography.headlineLarge, color = MaterialTheme.colorScheme.primary)
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Text("Plantas", style = MaterialTheme.typography.headlineLarge, color = MaterialTheme.colorScheme.primary)
+            OutlinedButton(onClick = alSalir, enabled = !modelo.comparando && !guardando) {
+                Text("Salir")
+            }
+        }
+        Text(estudiante, style = MaterialTheme.typography.titleMedium)
         Text(
             "Compara una foto con los modelos del teléfono. Los ResNet, si los marcas, se consultan en el PC.",
             style = MaterialTheme.typography.bodyLarge,
         )
+        OutlinedButton(onClick = alHistorial, enabled = !modelo.comparando) {
+            Text("Historial")
+        }
         if (permisoCamara) {
             VistaCamara(
                 activa = true,
@@ -189,6 +219,49 @@ fun PantallaPlantas(modelo: PlantasViewModel) {
         }
         modelo.resultados.forEach { resultado ->
             TarjetaResultado(resultado)
+        }
+        if (!modelo.comparando && foto != null && candidatos.isNotEmpty()) {
+            Text("Guardar en el historial", style = MaterialTheme.typography.titleMedium)
+            Text("Elige la especie que vas a registrar en el trabajo de campo.")
+            FlowRow(
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+            ) {
+                candidatos.forEach { etiqueta ->
+                    val clave = claveCientifica(etiqueta.cientifico)
+                    FilterChip(
+                        selected = clave == claveActual,
+                        onClick = { especieClave = clave },
+                        label = { Text(titulo(etiqueta.comun)) },
+                    )
+                }
+            }
+            OutlinedTextField(
+                value = nota,
+                onValueChange = { nota = it },
+                modifier = Modifier.fillMaxWidth(),
+                label = { Text("Nota de campo") },
+            )
+            avisoCampo?.let { texto ->
+                Text(texto)
+            }
+            Button(
+                onClick = {
+                    val elegida = candidatos.find { claveCientifica(it.cientifico) == claveActual }
+                    val imagen = foto
+                    if (elegida != null && imagen != null) {
+                        val modelos = modelo.resultados
+                            .filter { it.top.isNotEmpty() }
+                            .joinToString(", ") { it.ficha.nombre }
+                        alGuardar(imagen, elegida, modelos, nota)
+                        nota = ""
+                    }
+                },
+                enabled = !guardando && candidatos.isNotEmpty(),
+                modifier = Modifier.fillMaxWidth(),
+            ) {
+                Text(if (guardando) "Guardando…" else "Guardar análisis")
+            }
         }
         Spacer(Modifier.height(12.dp))
     }
@@ -360,6 +433,18 @@ private fun tomarFoto(
 
 private fun porcentaje(valor: Double): String {
     return String.format(Locale("es"), "%.1f %%", valor * 100.0)
+}
+
+private fun candidatosDe(resultados: List<Resultado>): List<Etiqueta> {
+    val mejores = linkedMapOf<String, Etiqueta>()
+    for (resultado in resultados) {
+        for (etiqueta in resultado.top) {
+            val clave = claveCientifica(etiqueta.cientifico)
+            val previo = mejores[clave]
+            if (previo == null || etiqueta.prob > previo.prob) mejores[clave] = etiqueta
+        }
+    }
+    return mejores.values.sortedByDescending { it.prob }
 }
 
 private fun titulo(texto: String): String {

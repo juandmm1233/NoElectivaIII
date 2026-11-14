@@ -1026,5 +1026,15 @@ def muestras(nombre):
     return send_from_directory(WEB / "static" / "muestras", nombre)
 
 
+import sys
+
+if str(WEB) not in sys.path:
+    sys.path.insert(0, str(WEB))
+
+from campo import registrar as registrar_campo
+
+registrar_campo(app)
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5050, debug=False, threaded=True)

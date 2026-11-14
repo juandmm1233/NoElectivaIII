@@ -1,0 +1,81 @@
+{
+  "modelos": [
+    {
+      "id": "herbify_v2",
+      "nombre": "MobileNetV2",
+      "arquitectura": "MobileNetV2",
+      "vocab": "herbify",
+      "dataset": "Herbify · India",
+      "accuracy": 0.912,
+      "archivo_tflite": "modelos/herbify_v2.tflite",
+      "archivo_clases": "clases.json",
+      "remoto": false
+    },
+    {
+      "id": "herbify_v3",
+      "nombre": "MobileNetV3Small",
+      "arquitectura": "MobileNetV3Small",
+      "vocab": "herbify",
+      "dataset": "Herbify · India",
+      "accuracy": 0.816,
+      "archivo_tflite": "modelos/herbify_v3.tflite",
+      "archivo_clases": "clases.json",
+      "remoto": false
+    },
+    {
+      "id": "herbify_efficientnet",
+      "nombre": "EfficientNetB0",
+      "arquitectura": "EfficientNetB0",
+      "vocab": "herbify",
+      "dataset": "Herbify · India",
+      "accuracy": 0.894,
+      "archivo_tflite": "modelos/herbify_efficientnet.tflite",
+      "archivo_clases": "clases.json",
+      "remoto": false
+    },
+    {
+      "id": "regional_v2",
+      "nombre": "MobileNetV2 regional",
+      "arquitectura": "MobileNetV2",
+      "vocab": "regional",
+      "dataset": "Colombia y huerta",
+      "accuracy": 0.68,
+      "archivo_tflite": "modelos/regional_v2.tflite",
+      "archivo_clases": "clases_29.json",
+      "remoto": false
+    },
+    {
+      "id": "regional_estudiante",
+      "nombre": "Estudiante regional",
+      "arquitectura": "MobileNetV2",
+      "vocab": "regional",
+      "dataset": "Colombia y huerta",
+      "accuracy": 0.695,
+      "archivo_tflite": "modelos/regional_estudiante.tflite",
+      "archivo_clases": "clases_29.json",
+      "remoto": false
+    },
+    {
+      "id": "resnet50",
+      "nombre": "ResNet50",
+      "arquitectura": "ResNet50",
+      "vocab": "herbify",
+      "dataset": "Herbify · India",
+      "accuracy": 0.93,
+      "archivo_tflite": null,
+      "archivo_clases": "clases.json",
+      "remoto": true
+    },
+    {
+      "id": "resnet50_regional",
+      "nombre": "ResNet50 regional",
+      "arquitectura": "ResNet50",
+      "vocab": "regional",
+      "dataset": "Colombia y huerta",
+      "accuracy": 0.765,
+      "archivo_tflite": null,
+      "archivo_clases": "clases_29.json",
+      "remoto": true
+    }
+  ]
+}

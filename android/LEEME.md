@@ -10,6 +10,8 @@ App Android (Kotlin y Jetpack Compose) para comparar una foto con los modelos de
 
 Los cinco modelos locales van en `app/src/main/assets` y funcionan sin red. El campo del PC es opcional: si marcas un ResNet, la foto se envía a `{url}/api/predecir`. Ejemplo: `http://192.168.1.10:5050` (el Flask de `web/app.py`, en `0.0.0.0:5050`).
 
+Cada estudiante crea una cuenta en el teléfono. Después de comparar, elige la especie, escribe una nota y guarda el análisis. El historial queda en el teléfono. Si la dirección del PC responde, esa copia también aparece en `http://IP:5050/campo`. La ficha muestra usos tradicionales solo cuando hay una fuente; si no, dice que no hay ficha documentada.
+
 ## Exportar los TFLite
 
 Con el entorno de la web (TensorFlow 2.21 / Keras 3.15), desde la raíz del repo:
