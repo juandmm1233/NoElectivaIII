@@ -91,19 +91,6 @@ _EXTRA_REGIONAL = [
         "val": 1327,
     },
     {
-        "id": "resnet50_regional",
-        "nombre": "ResNet50 · regional",
-        "arquitectura": "ResNet50",
-        "fotos": "El mismo dataset regional, 10201 / 2178 / 2201",
-        "limite": "Profesor del 2nd estudiante. Más preciso y mucho más pesado.",
-        "regularizacion": "Sin L1/L2",
-        "curvas_nota": "Curvas · 25 épocas + 20 de fine-tuning",
-        "matriz_nota": "Matriz de confusión en test (29 especies)",
-        "metricas": "metricas_resnet50_regional_29.json",
-        "curvas": "curvas_resnet50_regional_29.png",
-        "matriz": "matriz_resnet50_regional_29.png",
-    },
-    {
         "id": "estudiante_regional",
         "nombre": "2nd estudiante",
         "arquitectura": "MobileNetV2",
@@ -274,6 +261,42 @@ CATALOGO = [
         "Matriz de confusión en test (29 especies)",
         "clay",
         metricas_ruta=RAIZ / "regional_colombia" / "resultados" / "metricas_regional_29.json",
+        split=_SPLIT_REGIONAL,
+    ),
+    _ficha(
+        "resnet50",
+        "ResNet50",
+        "ResNet50",
+        "herbify",
+        "Herbify · India",
+        "El mismo split Herbify (57 especies, semilla 42)",
+        "Red pesada. Es el profesor de MobileNetV3.",
+        SALIDA_COMPARACION / "modelo_resnet50.h5",
+        RAIZ / "clases.json",
+        "/comparacion-img/curvas_resnet50.png",
+        "/comparacion-img/matriz_resnet50.png",
+        "Curvas · ResNet50",
+        "Matriz de confusión en test (57 especies)",
+        "deep",
+        metricas_ruta=SALIDA_COMPARACION / "metricas_resnet50.json",
+        split=_SPLIT_HERBIFY,
+    ),
+    _ficha(
+        "resnet50_regional",
+        "ResNet50 · regional",
+        "ResNet50",
+        "regional",
+        "Colombia y huerta",
+        "El mismo dataset regional, 10201 / 2178 / 2201",
+        "Profesor del 2nd estudiante. Más preciso y mucho más pesado.",
+        RESULTADOS_REGIONAL / "modelo_resnet50_regional_29.h5",
+        RESULTADOS_REGIONAL / "clases_29.json",
+        "/regional-img/curvas_resnet50_regional_29.png",
+        "/regional-img/matriz_resnet50_regional_29.png",
+        "Curvas · 25 épocas + 20 de fine-tuning",
+        "Matriz de confusión en test (29 especies)",
+        "clay",
+        metricas_ruta=RESULTADOS_REGIONAL / "metricas_resnet50_regional_29.json",
         split=_SPLIT_REGIONAL,
     ),
 ]
@@ -906,10 +929,18 @@ def modelos():
     )
 
 
+def _nombres_regional_img() -> set[str]:
+    nombres = {item["curvas"] for item in _EXTRA_REGIONAL} | {item["matriz"] for item in _EXTRA_REGIONAL}
+    for info in CATALOGO:
+        for campo in (info["curvas"], info["matriz"]):
+            if isinstance(campo, str) and campo.startswith("/regional-img/"):
+                nombres.add(campo.removeprefix("/regional-img/").split("?", 1)[0])
+    return nombres
+
+
 @app.get("/regional-img/<nombre>")
 def regional_img(nombre):
-    permitidos = {item["curvas"] for item in _EXTRA_REGIONAL} | {item["matriz"] for item in _EXTRA_REGIONAL}
-    if nombre not in permitidos:
+    if nombre not in _nombres_regional_img():
         return "No encontrado", 404
     return send_from_directory(RESULTADOS_REGIONAL, nombre)
 
