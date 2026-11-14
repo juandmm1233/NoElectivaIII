@@ -26,9 +26,9 @@ La latencia del teléfono no está medida. El valor de la tabla es de esta máqu
 
 ## Cómo instalar la app
 
-Hace falta Android Studio y el Android SDK 35. La app pide Android 8 (minSdk 26) o superior. Está pensada para un Pixel 7 Pro con Android 13.
+La app Android no está en `main`. Está en la rama `android`, dentro de la carpeta `app/`. Hace falta Android Studio y el Android SDK 35. La app pide Android 8 (minSdk 26) o superior. Está pensada para un Pixel 7 Pro con Android 13.
 
-1. Clona el repositorio.
+1. Clona el repositorio y cambia a esa rama: `git checkout android`.
 2. Android Studio → Open → la carpeta `app/`.
 3. Espera a que baje el Gradle wrapper (8.13) y sincronice.
 4. Ejecuta el módulo `app` en el teléfono.
@@ -56,7 +56,7 @@ Abre Jupyter o VS Code con la raíz del repositorio como directorio de trabajo. 
 
 No están en el repositorio.
 
-**Herbify (India).** [Herb (Plant) Classification Dataset](https://www.kaggle.com/datasets/ai4a-lab/herb-plant-classification-dataset), de Kaggle, `ai4a-lab/herb-plant-classification-dataset`. Son fotos de estudio, fondo bastante uniforme, con el nombre científico y el común en la carpeta. El conjunto trae 91 clases y 6.104 imágenes. El entrenamiento usa las 57 clases que tienen al menos 50 fotos (4.903 imágenes): 3.408 train, 734 validación y 761 test. La lista de esas 57 clases está en `app/app/src/main/assets/clases.json`.
+**Herbify (India).** [Herb (Plant) Classification Dataset](https://www.kaggle.com/datasets/ai4a-lab/herb-plant-classification-dataset), de Kaggle, `ai4a-lab/herb-plant-classification-dataset`. Son fotos de estudio, fondo bastante uniforme, con el nombre científico y el común en la carpeta. El conjunto trae 91 clases y 6.104 imágenes. El entrenamiento usa las 57 clases que tienen al menos 50 fotos (4.903 imágenes): 3.408 train, 734 validación y 761 test. La lista de esas 57 clases está en `clases.json`.
 
 **Regional (Colombia / Tolima).** Fotos Research Grade de iNaturalist con licencia CC0, CC-BY, CC-BY-SA o CC-BY-NC, más fotos de huerta del equipo. 10.201 train, 2.178 validación y 2.201 test. Estas son las 29 clases del modelo de `model/`, en el orden de `labels.txt`:
 
@@ -100,5 +100,5 @@ Enlace al video: pendiente de publicar.
 | --- | --- |
 | `notebooks/` | Cuadernos del proyecto. Falta el de la auditoría de la Semana 15. |
 | `model/` | `modelo.tflite` y `labels.txt` |
-| `app/` | Código de la app Android (Kotlin y Jetpack Compose) |
+| rama `android`, carpeta `app/` | Código de la app Android (Kotlin y Jetpack Compose). No está en `main`. |
 | `docs/` | Informe de auditoría (PDF), deck y capturas. Todavía no están los archivos. |
