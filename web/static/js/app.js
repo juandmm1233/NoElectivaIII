@@ -66,7 +66,8 @@ function columnasComparacion() {
     mobilenetv2: "MobileNetV2 · comparación",
     mobilenetv3: "MobileNetV3 · alumno",
   };
-  return comparacionModelos.map((m) => ({
+  const ya = new Set(catalogo.map((m) => m.id));
+  return comparacionModelos.filter((m) => !ya.has(m.id)).map((m) => ({
     nombre: nombres[m.id] || m.nombre,
     arquitectura: m.nombre,
     clases: 57,
@@ -150,11 +151,11 @@ function pintarPaneles() {
     panel.id = `panel-${m.id}`;
     panel.innerHTML = `<div class="graficas">
         <figure>
-          <img src="${escapar(srcGrafica(m.curvas))}" alt="Curvas de ${escapar(m.nombre)}">
+          <img src="${escapar(srcGrafica(m.curvas))}" alt="Curvas de ${escapar(m.nombre)}" onerror="this.closest('figure').classList.add('oculto')">
           <figcaption>${escapar(m.curvas_nota)}</figcaption>
         </figure>
         <figure>
-          <img src="${escapar(srcGrafica(m.matriz))}" alt="Matriz de confusión de ${escapar(m.nombre)}">
+          <img src="${escapar(srcGrafica(m.matriz))}" alt="Matriz de confusión de ${escapar(m.nombre)}" onerror="this.closest('figure').classList.add('oculto')">
           <figcaption>${escapar(m.matriz_nota)}</figcaption>
         </figure>
       </div>

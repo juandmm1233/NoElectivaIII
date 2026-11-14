@@ -19,6 +19,13 @@ web/.cache_h5/
 web/__pycache__/
 Modelos_livianos.zip
 
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+android/.idea/
+*.iml
+
 # Imagenes locales: se quedan en el disco y no entran a la lista de cambios.
 *.png
 *.jpg

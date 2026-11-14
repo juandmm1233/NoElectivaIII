@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.Plantas" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:statusBarColor">#1B4332</item>
+        <item name="android:navigationBarColor">#1B4332</item>
+        <item name="android:windowBackground">#F6F3EA</item>
+    </style>
+</resources>
