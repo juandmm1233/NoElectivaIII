@@ -1,5 +1,6 @@
 let catalogo = [];
 let comparacionModelos = [];
+let entrenamientos = [];
 let seleccion = new Set();
 let archivoActual = null;
 
@@ -65,7 +66,8 @@ function columnasComparacion() {
     mobilenetv2: "MobileNetV2 · comparación",
     mobilenetv3: "MobileNetV3 · alumno",
   };
-  return comparacionModelos.map((m) => ({
+  const ya = new Set(catalogo.map((m) => m.id));
+  return comparacionModelos.filter((m) => !ya.has(m.id)).map((m) => ({
     nombre: nombres[m.id] || m.nombre,
     arquitectura: m.nombre,
     clases: 57,
@@ -81,15 +83,23 @@ function columnasComparacion() {
     minutos: m.minutos,
     fotos: "Herbify, mismo split, semilla 42",
     limite: m.estado === "fallo" ? "Sin test: la evaluación falló" : m.rol,
+    regularizacion: "Sin L1/L2",
   }));
 }
 
+function srcGrafica(ruta) {
+  if (!ruta) return "";
+  if (ruta.charAt(0) === "/") return ruta;
+  return `/static/${ruta}`;
+}
+
 function pintarTabla() {
-  const columnas = catalogo.concat(columnasComparacion());
+  const columnas = catalogo.concat(entrenamientos).concat(columnasComparacion());
   const head = document.getElementById("tabla-head");
   head.innerHTML = `<th></th>${columnas.map((m) => `<th>${escapar(m.nombre)}</th>`).join("")}`;
   const filas = [
     ["Arquitectura", (m) => escapar(m.arquitectura)],
+    ["Regularización", (m) => escapar(m.regularizacion || "—")],
     ["Especies", (m) => entero(m.clases)],
     ["Train / val / test", (m) =>
       m.train != null && m.val != null && m.test != null
@@ -122,7 +132,7 @@ function pintarPaneles() {
   const paneles = document.getElementById("paneles");
   pills.innerHTML = "";
   paneles.innerHTML = "";
-  catalogo.forEach((m, i) => {
+  catalogo.concat(entrenamientos).forEach((m, i) => {
     const btn = document.createElement("button");
     btn.type = "button";
     btn.className = `pill${i === 0 ? " activo" : ""}`;
@@ -141,11 +151,11 @@ function pintarPaneles() {
     panel.id = `panel-${m.id}`;
     panel.innerHTML = `<div class="graficas">
         <figure>
-          <img src="/static/${m.curvas}" alt="Curvas de ${escapar(m.nombre)}">
+          <img src="${escapar(srcGrafica(m.curvas))}" alt="Curvas de ${escapar(m.nombre)}" onerror="this.closest('figure').classList.add('oculto')">
           <figcaption>${escapar(m.curvas_nota)}</figcaption>
         </figure>
         <figure>
-          <img src="/static/${m.matriz}" alt="Matriz de confusión de ${escapar(m.nombre)}">
+          <img src="${escapar(srcGrafica(m.matriz))}" alt="Matriz de confusión de ${escapar(m.nombre)}" onerror="this.closest('figure').classList.add('oculto')">
           <figcaption>${escapar(m.matriz_nota)}</figcaption>
         </figure>
       </div>
@@ -485,6 +495,7 @@ async function arrancar() {
       fetch("/api/estado").then((r) => r.json()),
     ]);
     catalogo = mods.modelos || [];
+    entrenamientos = mods.entrenamientos || [];
     seleccion = new Set(catalogo.filter((m) => m.archivo).map((m) => m.id));
     pintarCifras();
     pintarTabla();

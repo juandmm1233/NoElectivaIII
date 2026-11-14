@@ -52,6 +52,58 @@ _EQUIPO = {
 _SPLIT_HERBIFY = {"train": 3408, "val": 734}
 _SPLIT_REGIONAL = {"train": 10201, "val": 2178}
 SALIDA_COMPARACION = RAIZ / "resultados_comparacion"
+RESULTADOS_REGIONAL = RAIZ / "regional_colombia" / "resultados"
+_EXTRA_REGIONAL = [
+    {
+        "id": "regional_sin_l1l2",
+        "nombre": "MobileNetV2 · 20 esp. sin L1/L2",
+        "arquitectura": "MobileNetV2",
+        "dataset": "Colombia / Tolima · 20 especies",
+        "fotos": "iNaturalist y Herbify en guayaba y ruda. 6238 / 1327 / 1347",
+        "limite": "Línea base de 20 especies: Dropout 0.4, sin multa sobre los pesos.",
+        "regularizacion": "Sin L1/L2",
+        "curvas_nota": "Curvas · MobileNetV2 de 20 especies, sin L1/L2",
+        "matriz_nota": "Matriz de confusión en test (20 especies)",
+        "metricas": "metricas_regional.json",
+        "curvas": "curvas_regional.png",
+        "matriz": "matriz_regional.png",
+        "modelo": "modelo_regional.h5",
+        "clases": 20,
+        "train": 6238,
+        "val": 1327,
+    },
+    {
+        "id": "regional_l1l2",
+        "nombre": "MobileNetV2 · 20 esp. con L1/L2",
+        "arquitectura": "MobileNetV2",
+        "dataset": "Colombia / Tolima · 20 especies",
+        "fotos": "Las mismas 6238 / 1327 / 1347 fotos que el MobileNetV2 sin L1/L2",
+        "limite": "Única diferencia: L1 = 1e-5 y L2 = 1e-4 en el kernel de la capa final.",
+        "regularizacion": "Con L1 = 1e-5 y L2 = 1e-4",
+        "curvas_nota": "Curvas · la misma red, con L1 y L2 en la capa final",
+        "matriz_nota": "Matriz de confusión en test (20 especies)",
+        "metricas": "metricas_regional_l1l2.json",
+        "curvas": "curvas_regional_l1l2.png",
+        "matriz": "matriz_regional_l1l2.png",
+        "modelo": "modelo_regional_l1l2.h5",
+        "clases": 20,
+        "train": 6238,
+        "val": 1327,
+    },
+    {
+        "id": "estudiante_regional",
+        "nombre": "2nd estudiante",
+        "arquitectura": "MobileNetV2",
+        "fotos": "El mismo dataset regional, 10201 / 2178 / 2201",
+        "limite": "Aprendió de la etiqueta y de las probabilidades del ResNet50 regional.",
+        "regularizacion": "Sin L1/L2",
+        "curvas_nota": "Curvas · fase 1 con parada temprana y 20 épocas de fine-tuning",
+        "matriz_nota": "Matriz de confusión en test (29 especies)",
+        "metricas": "metricas_mobilenetv2_estudiante_regional.json",
+        "curvas": "curvas_mobilenetv2_estudiante_regional.png",
+        "matriz": "matriz_mobilenetv2_estudiante_regional.png",
+    },
+]
 _COMPARACION = [
     {
         "id": "resnet50",
@@ -200,7 +252,7 @@ CATALOGO = [
         "regional",
         "Colombia y huerta",
         "iNaturalist, Herbify en guayaba y ruda, y fotos de huerta del equipo",
-        "Fotos de campo; hojas parecidas (matarratón, roble, moringa)",
+        "Fotos de campo, sin L1/L2. Hojas parecidas: matarratón, roble, moringa",
         RAIZ / "regional_colombia" / "resultados" / "modelo_regional_29clases.h5",
         RAIZ / "regional_colombia" / "resultados" / "clases_29.json",
         "img/regional_curvas.png",
@@ -209,6 +261,42 @@ CATALOGO = [
         "Matriz de confusión en test (29 especies)",
         "clay",
         metricas_ruta=RAIZ / "regional_colombia" / "resultados" / "metricas_regional_29.json",
+        split=_SPLIT_REGIONAL,
+    ),
+    _ficha(
+        "resnet50",
+        "ResNet50",
+        "ResNet50",
+        "herbify",
+        "Herbify · India",
+        "El mismo split Herbify (57 especies, semilla 42)",
+        "Red pesada. Es el profesor de MobileNetV3.",
+        SALIDA_COMPARACION / "modelo_resnet50.h5",
+        RAIZ / "clases.json",
+        "/comparacion-img/curvas_resnet50.png",
+        "/comparacion-img/matriz_resnet50.png",
+        "Curvas · ResNet50",
+        "Matriz de confusión en test (57 especies)",
+        "deep",
+        metricas_ruta=SALIDA_COMPARACION / "metricas_resnet50.json",
+        split=_SPLIT_HERBIFY,
+    ),
+    _ficha(
+        "resnet50_regional",
+        "ResNet50 · regional",
+        "ResNet50",
+        "regional",
+        "Colombia y huerta",
+        "El mismo dataset regional, 10201 / 2178 / 2201",
+        "Profesor del 2nd estudiante. Más preciso y mucho más pesado.",
+        RESULTADOS_REGIONAL / "modelo_resnet50_regional_29.h5",
+        RESULTADOS_REGIONAL / "clases_29.json",
+        "/regional-img/curvas_resnet50_regional_29.png",
+        "/regional-img/matriz_resnet50_regional_29.png",
+        "Curvas · 25 épocas + 20 de fine-tuning",
+        "Matriz de confusión en test (29 especies)",
+        "clay",
+        metricas_ruta=RESULTADOS_REGIONAL / "metricas_resnet50_regional_29.json",
         split=_SPLIT_REGIONAL,
     ),
 ]
@@ -271,6 +359,66 @@ def _f1_publico(info: dict, metricas: dict) -> list[dict]:
     return salida
 
 
+def _numero_clases(datos: dict, item: dict):
+    crudo = datos.get("clases", item.get("clases"))
+    if isinstance(crudo, list):
+        return len(crudo)
+    return crudo
+
+
+def _tamano_mb(datos: dict, item: dict):
+    if datos.get("tamano_mb") is not None:
+        return datos["tamano_mb"]
+    nombre = item.get("modelo")
+    if not nombre:
+        return None
+    ruta = RESULTADOS_REGIONAL / nombre
+    if not ruta.is_file():
+        return None
+    return round(ruta.stat().st_size / (1024 * 1024), 2)
+
+
+def _entrenamientos_regionales() -> list[dict]:
+    salida = []
+    for item in _EXTRA_REGIONAL:
+        datos = _leer_json(RESULTADOS_REGIONAL / item["metricas"])
+        if not datos:
+            continue
+        curvas = RESULTADOS_REGIONAL / item["curvas"]
+        matriz = RESULTADOS_REGIONAL / item["matriz"]
+        salida.append(
+            {
+                "id": item["id"],
+                "nombre": item["nombre"],
+                "arquitectura": item["arquitectura"],
+                "vocab": "regional",
+                "dataset": item.get("dataset") or "Colombia y huerta",
+                "fotos": item["fotos"],
+                "limite": item["limite"],
+                "regularizacion": item.get("regularizacion") or "Sin L1/L2",
+                "tono": "clay",
+                "curvas": f"/regional-img/{item['curvas']}" if curvas.is_file() else None,
+                "matriz": f"/regional-img/{item['matriz']}" if matriz.is_file() else None,
+                "curvas_nota": item["curvas_nota"],
+                "matriz_nota": item["matriz_nota"],
+                "archivo": False,
+                "accuracy": datos.get("accuracy_test"),
+                "top3": datos.get("top3_accuracy_test"),
+                "f1": datos.get("f1_ponderado"),
+                "parametros": datos.get("parametros"),
+                "tamano_mb": _tamano_mb(datos, item),
+                "minutos": datos.get("minutos_entrenamiento"),
+                "clases": _numero_clases(datos, item),
+                "train": datos.get("train", item.get("train")),
+                "val": datos.get("val", item.get("val")),
+                "test": datos.get("imagenes_test"),
+                "errores": datos.get("errores_test"),
+                "f1_por_clase": _f1_publico({}, datos),
+            }
+        )
+    return salida
+
+
 def _publico(info: dict) -> dict:
     metricas = _metricas(info)
     return {
@@ -282,6 +430,7 @@ def _publico(info: dict) -> dict:
         "fotos": info["fotos"],
         "limite": info["limite"],
         "tono": info["tono"],
+        "regularizacion": info.get("regularizacion") or "Sin L1/L2",
         "curvas": info["curvas"],
         "matriz": info["matriz"],
         "curvas_nota": info["curvas_nota"],
@@ -772,7 +921,28 @@ def comparacion_img(nombre):
 
 @app.get("/api/modelos")
 def modelos():
-    return jsonify({"modelos": [_publico(info) for info in CATALOGO]})
+    return jsonify(
+        {
+            "modelos": [_publico(info) for info in CATALOGO],
+            "entrenamientos": _entrenamientos_regionales(),
+        }
+    )
+
+
+def _nombres_regional_img() -> set[str]:
+    nombres = {item["curvas"] for item in _EXTRA_REGIONAL} | {item["matriz"] for item in _EXTRA_REGIONAL}
+    for info in CATALOGO:
+        for campo in (info["curvas"], info["matriz"]):
+            if isinstance(campo, str) and campo.startswith("/regional-img/"):
+                nombres.add(campo.removeprefix("/regional-img/").split("?", 1)[0])
+    return nombres
+
+
+@app.get("/regional-img/<nombre>")
+def regional_img(nombre):
+    if nombre not in _nombres_regional_img():
+        return "No encontrado", 404
+    return send_from_directory(RESULTADOS_REGIONAL, nombre)
 
 
 @app.get("/api/especies")

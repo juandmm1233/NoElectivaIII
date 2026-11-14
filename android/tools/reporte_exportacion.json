@@ -1,0 +1,182 @@
+[
+  {
+    "id": "herbify_v2",
+    "ok": true,
+    "error": null,
+    "via": "keras",
+    "saltadas": [
+      "augmentacion:Sequential"
+    ],
+    "mb": 4.43,
+    "chequeos": [
+      {
+        "imagen": "sintetica",
+        "argmax_keras": 54,
+        "argmax_tflite": 54,
+        "coincide": true,
+        "max_abs": 0.002798,
+        "prob_keras": 0.331942
+      },
+      {
+        "imagen": "herb_Allium_cepa_Onion.jpg",
+        "argmax_keras": 0,
+        "argmax_tflite": 0,
+        "coincide": true,
+        "max_abs": 5.8e-05,
+        "prob_keras": 0.999751
+      },
+      {
+        "imagen": "herb_Aloe_barbadensis_miller__Aloevera_.jpg",
+        "argmax_keras": 1,
+        "argmax_tflite": 1,
+        "coincide": true,
+        "max_abs": 0.001536,
+        "prob_keras": 0.980775
+      }
+    ]
+  },
+  {
+    "id": "herbify_v3",
+    "ok": true,
+    "error": null,
+    "via": "keras",
+    "saltadas": [
+      "augmentacion:Sequential"
+    ],
+    "mb": 1.93,
+    "chequeos": [
+      {
+        "imagen": "sintetica",
+        "argmax_keras": 33,
+        "argmax_tflite": 33,
+        "coincide": true,
+        "max_abs": 0.005964,
+        "prob_keras": 0.457792
+      },
+      {
+        "imagen": "herb_Allium_cepa_Onion.jpg",
+        "argmax_keras": 0,
+        "argmax_tflite": 0,
+        "coincide": true,
+        "max_abs": 1e-06,
+        "prob_keras": 0.999968
+      },
+      {
+        "imagen": "herb_Aloe_barbadensis_miller__Aloevera_.jpg",
+        "argmax_keras": 1,
+        "argmax_tflite": 1,
+        "coincide": true,
+        "max_abs": 4.4e-05,
+        "prob_keras": 0.998544
+      }
+    ]
+  },
+  {
+    "id": "herbify_efficientnet",
+    "ok": true,
+    "error": null,
+    "via": "keras",
+    "saltadas": [
+      "augmentacion:Sequential"
+    ],
+    "mb": 7.89,
+    "chequeos": [
+      {
+        "imagen": "sintetica",
+        "argmax_keras": 54,
+        "argmax_tflite": 54,
+        "coincide": true,
+        "max_abs": 0.009885,
+        "prob_keras": 0.417494
+      },
+      {
+        "imagen": "herb_Allium_cepa_Onion.jpg",
+        "argmax_keras": 0,
+        "argmax_tflite": 0,
+        "coincide": true,
+        "max_abs": 0.0,
+        "prob_keras": 0.999995
+      },
+      {
+        "imagen": "herb_Aloe_barbadensis_miller__Aloevera_.jpg",
+        "argmax_keras": 1,
+        "argmax_tflite": 1,
+        "coincide": true,
+        "max_abs": 0.0,
+        "prob_keras": 0.999985
+      }
+    ]
+  },
+  {
+    "id": "regional_v2",
+    "ok": true,
+    "error": null,
+    "via": "keras",
+    "saltadas": [
+      "augmentacion:Sequential"
+    ],
+    "mb": 4.37,
+    "chequeos": [
+      {
+        "imagen": "sintetica",
+        "argmax_keras": 25,
+        "argmax_tflite": 25,
+        "coincide": true,
+        "max_abs": 0.00239,
+        "prob_keras": 0.260327
+      },
+      {
+        "imagen": "herb_Allium_cepa_Onion.jpg",
+        "argmax_keras": 9,
+        "argmax_tflite": 9,
+        "coincide": true,
+        "max_abs": 0.013479,
+        "prob_keras": 0.885084
+      },
+      {
+        "imagen": "herb_Aloe_barbadensis_miller__Aloevera_.jpg",
+        "argmax_keras": 21,
+        "argmax_tflite": 21,
+        "coincide": true,
+        "max_abs": 0.009045,
+        "prob_keras": 0.407963
+      }
+    ]
+  },
+  {
+    "id": "regional_estudiante",
+    "ok": true,
+    "error": null,
+    "via": "keras",
+    "saltadas": [
+      "augmentacion:Sequential"
+    ],
+    "mb": 4.38,
+    "chequeos": [
+      {
+        "imagen": "sintetica",
+        "argmax_keras": 12,
+        "argmax_tflite": 12,
+        "coincide": true,
+        "max_abs": 0.004426,
+        "prob_keras": 0.213041
+      },
+      {
+        "imagen": "herb_Allium_cepa_Onion.jpg",
+        "argmax_keras": 9,
+        "argmax_tflite": 9,
+        "coincide": true,
+        "max_abs": 0.027292,
+        "prob_keras": 0.851784
+      },
+      {
+        "imagen": "herb_Aloe_barbadensis_miller__Aloevera_.jpg",
+        "argmax_keras": 21,
+        "argmax_tflite": 21,
+        "coincide": true,
+        "max_abs": 0.002342,
+        "prob_keras": 0.927229
+      }
+    ]
+  }
+]
