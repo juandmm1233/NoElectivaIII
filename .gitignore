@@ -16,20 +16,30 @@ regional_colombia/dataset_29/
 regional_colombia/resultados/
 web/uploads/
 web/.cache_h5/
+web/datos/
 web/__pycache__/
 Modelos_livianos.zip
 
-android/.gradle/
-android/build/
-android/app/build/
-android/local.properties
-android/.idea/
+app/.gradle/
+app/build/
+app/app/build/
+app/local.properties
+app/.idea/
 *.iml
 
+# Android Studio tenía esta carpeta abierta al armar la entrega.
+# El código que se publica está en /app.
+/android/
+
 # Imagenes locales: se quedan en el disco y no entran a la lista de cambios.
+# Las capturas de la entrega sí se suben.
 *.png
 *.jpg
 *.jpeg
 *.webp
 *.gif
 *.bmp
+!docs/**/*.png
+!docs/**/*.jpg
+!docs/**/*.jpeg
+!docs/**/*.webp

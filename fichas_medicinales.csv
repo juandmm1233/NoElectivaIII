@@ -1,24 +1,24 @@
 clase,nombre_comun,nombre_cientifico,familia,parte_usada,usos_tradicionales,principios_activos,contraindicaciones,fuente
-Allium cepa (Onion),Onion,Allium cepa,,,,,,Herbify / Kaggle ai4a-lab/herb-plant-classification-dataset
-Aloe barbadensis miller (Aloevera),Aloevera,Aloe barbadensis miller,,,,,,Herbify / Kaggle ai4a-lab/herb-plant-classification-dataset
+Allium cepa (Onion),Onion,Allium cepa,,Bulbo,La monografía de la OMS recoge el uso tradicional del bulbo en resfriados y tos.,,,World Health Organization. WHO monographs on selected medicinal plants. Vol. 1. Geneva: WHO; 1999. Bulbus Allii Cepae.
+Aloe barbadensis miller (Aloevera),Aloevera,Aloe barbadensis miller,,Gel de la hoja,La monografía de la OMS recoge el uso tópico tradicional del gel en heridas leves y quemaduras menores. Aloe barbadensis Miller es sinónimo de Aloe vera.,,El látex amarillo de la hoja es un laxante fuerte y no es el gel que describe la monografía.,World Health Organization. WHO monographs on selected medicinal plants. Vol. 1. Geneva: WHO; 1999. Aloe vera gel.
 Alpinia Galanga (Rasna),Rasna,Alpinia Galanga,,,,,,Herbify / Kaggle ai4a-lab/herb-plant-classification-dataset
 Amaranthus Viridis (Arive-Dantu),Arive-Dantu,Amaranthus Viridis,,,,,,Herbify / Kaggle ai4a-lab/herb-plant-classification-dataset
-Andrographis paniculata (Nelavembu),Nelavembu,Andrographis paniculata,,,,,,Herbify / Kaggle ai4a-lab/herb-plant-classification-dataset
+Andrographis paniculata (Nelavembu),Nelavembu,Andrographis paniculata,,Partes aéreas,La monografía de la OMS recoge el uso tradicional de la hierba en resfriados y fiebres.,,,World Health Organization. WHO monographs on selected medicinal plants. Vol. 2. Geneva: WHO; 2002. Herba Andrographidis.
 Annona squamosa (Seethapala),Seethapala,Annona squamosa,,,,,,Herbify / Kaggle ai4a-lab/herb-plant-classification-dataset
 Artocarpus heterophyllus (Jackfruit),Jackfruit,Artocarpus heterophyllus,,,,,,Herbify / Kaggle ai4a-lab/herb-plant-classification-dataset
-Azadirachta indica (Neem),Neem,Azadirachta indica,,,,,,Herbify / Kaggle ai4a-lab/herb-plant-classification-dataset
-Bacopa monnieri (Bhrami),Bhrami,Bacopa monnieri,,,,,,Herbify / Kaggle ai4a-lab/herb-plant-classification-dataset
+Azadirachta indica (Neem),Neem,Azadirachta indica,,Hoja,La monografía de la OMS recoge el uso tradicional de la hoja en afecciones de la piel.,,,World Health Organization. WHO monographs on selected medicinal plants. Vol. 2. Geneva: WHO; 2002. Folium Azadirachtae.
+Bacopa monnieri (Bhrami),Bhrami,Bacopa monnieri,,Partes aéreas,La revisión recoge su reputación tradicional como planta para la memoria.,,,"Russo A, Borrelli F. Bacopa monniera, a reputed nootropic plant: an overview. Phytomedicine. 2005;12(4):305-317."
 Basella alba (Malabar Spinach),Malabar Spinach,Basella alba,,,,,,Herbify / Kaggle ai4a-lab/herb-plant-classification-dataset
-Carica papaya (Papaya),Papaya,Carica papaya,,,,,,Herbify / Kaggle ai4a-lab/herb-plant-classification-dataset
+Carica papaya (Papaya),Papaya,Carica papaya,,Fruto,El capítulo de Morton describe el fruto como alimento y recoge usos populares digestivos.,,Las semillas y el látex no forman parte de ese uso del fruto maduro.,Morton JF. Papaya. In: Fruits of warm climates. Miami: Julia F. Morton; 1987.
 Carissa Carandas (Karanda),Karanda,Carissa Carandas,,,,,,Herbify / Kaggle ai4a-lab/herb-plant-classification-dataset
-Catharanthus roseus (Catharanthus),Catharanthus,Catharanthus roseus,,,,,,Herbify / Kaggle ai4a-lab/herb-plant-classification-dataset
+Catharanthus roseus (Catharanthus),Catharanthus,Catharanthus roseus,,Hoja,"No se ofrece un uso de campo. La planta es la fuente de vincristina y vinblastina, alcaloides usados en oncología y no como remedio casero.",,Toda la planta contiene alcaloides tóxicos.,"van der Heijden R, Jacobs DI, Snoeijer W, Hallard D, Verpoorte R. The Catharanthus alkaloids: pharmacognosy and biotechnology. Curr Med Chem. 2004;11(5):607-628."
 Chamaecostus cuspidatus (Insulin),Insulin,Chamaecostus cuspidatus,,,,,,Herbify / Kaggle ai4a-lab/herb-plant-classification-dataset
-Citrus limon (Lemon),Lemon,Citrus limon,,,,,,Herbify / Kaggle ai4a-lab/herb-plant-classification-dataset
+Citrus limon (Lemon),Lemon,Citrus limon,,Fruto,La revisión recoge usos tradicionales del fruto en molestias respiratorias y digestivas.,,,"Klimek-Szczykutowicz M, Szopa A, Ekiert H. Citrus limon (Lemon) phenomenon—a review of the chemistry, pharmacological properties, applications in the modern pharmaceutical, food, and cosmetics industries, and biotechnological studies. Plants. 2020;9(1):119."
 Citrus medica (herelikai),herelikai,Citrus medica,,,,,,Herbify / Kaggle ai4a-lab/herb-plant-classification-dataset
-Coleus amboinicus (Mexican mint_Doddpathre),Mexican mint_Doddpathre,Coleus amboinicus,,,,,,Herbify / Kaggle ai4a-lab/herb-plant-classification-dataset
+Coleus amboinicus (Mexican mint_Doddpathre),Mexican mint_Doddpathre,Coleus amboinicus,,Hoja,La revisión recoge el uso tradicional de la hoja en tos y resfriados. Plectranthus amboinicus es sinónimo.,,,"Arumugam G, Swamy MK, Sinniah UR. Plectranthus amboinicus (Lour.) Spreng: botanical, phytochemical, pharmacological and nutritional significance. Molecules. 2016;21(4):369."
 Colocasia esculenta (Taro),Taro,Colocasia esculenta,,,,,,Herbify / Kaggle ai4a-lab/herb-plant-classification-dataset
 Coriandrum sativum (Coriander),Coriander,Coriandrum sativum,,,,,,Herbify / Kaggle ai4a-lab/herb-plant-classification-dataset
-Cucurbita (Pumpkin),Pumpkin,Cucurbita,,,,,,Herbify / Kaggle ai4a-lab/herb-plant-classification-dataset
+Cucurbita (Pumpkin),Pumpkin,Cucurbita,,Semilla,"La monografía de la OMS es de la semilla, no del fruto, y recoge su uso tradicional en molestias urinarias. El modelo solo llega al género.",,,World Health Organization. WHO monographs on selected medicinal plants. Vol. 2. Geneva: WHO; 2002. Semen Cucurbitae.
 Eclipta prostrata (Bringaraja),Bringaraja,Eclipta prostrata,,,,,,Herbify / Kaggle ai4a-lab/herb-plant-classification-dataset
 Ficus Auriculata (Roxburgh fig),Roxburgh fig,Ficus Auriculata,,,,,,Herbify / Kaggle ai4a-lab/herb-plant-classification-dataset
 Ficus Religiosa (Peepal Tree),Peepal Tree,Ficus Religiosa,,,,,,Herbify / Kaggle ai4a-lab/herb-plant-classification-dataset
@@ -29,23 +29,23 @@ Hymenaea courbaril (Chakte),Chakte,Hymenaea courbaril,,,,,,Herbify / Kaggle ai4a
 Jasminum (Jasmine),Jasmine,Jasminum,,,,,,Herbify / Kaggle ai4a-lab/herb-plant-classification-dataset
 Lawsonia inermis (Henna),Henna,Lawsonia inermis,,,,,,Herbify / Kaggle ai4a-lab/herb-plant-classification-dataset
 Mangifera indica (Mango),Mango,Mangifera indica,,,,,,Herbify / Kaggle ai4a-lab/herb-plant-classification-dataset
-Mentha (Mint),Mint,Mentha,,,,,,Herbify / Kaggle ai4a-lab/herb-plant-classification-dataset
+Mentha (Mint),Mint,Mentha,,Hoja,"La monografía de la OMS corresponde a Mentha × piperita, no a todo el género, y recoge el uso tradicional de la hoja en molestias digestivas. El modelo solo llega al género.",,,World Health Organization. WHO monographs on selected medicinal plants. Vol. 2. Geneva: WHO; 2002. Folium Menthae Piperitae.
 Momordica dioica (Thumbai_Spiny gourd),Thumbai_Spiny gourd,Momordica dioica,,,,,,Herbify / Kaggle ai4a-lab/herb-plant-classification-dataset
 Morinda citrifolia (Nooni),Nooni,Morinda citrifolia,,,,,,Herbify / Kaggle ai4a-lab/herb-plant-classification-dataset
-Moringa oleifera (Moringa_Drumstick),Moringa_Drumstick,Moringa oleifera,,,,,,Herbify / Kaggle ai4a-lab/herb-plant-classification-dataset
+Moringa oleifera (Moringa_Drumstick),Moringa_Drumstick,Moringa oleifera,,Hoja,La revisión describe la hoja como alimento y recoge usos medicinales tradicionales.,,,"Anwar F, Latif S, Ashraf M, Gilani AH. Moringa oleifera: a food plant with multiple medicinal uses. Phytother Res. 2007;21(1):17-25."
 Muntingia Calabura (Jamaica Cherry-Gasagase),Jamaica Cherry-Gasagase,Muntingia Calabura,,,,,,Herbify / Kaggle ai4a-lab/herb-plant-classification-dataset
 Murraya koenigii (Curry),Curry,Murraya koenigii,,,,,,Herbify / Kaggle ai4a-lab/herb-plant-classification-dataset
-Nerium oleander (Arali),Arali,Nerium oleander,,,,,,Herbify / Kaggle ai4a-lab/herb-plant-classification-dataset
+Nerium oleander (Arali),Arali,Nerium oleander,,Toda la planta,No se documenta un uso de campo seguro. La revisión de casos describe intoxicación por glucósidos cardíacos.,,"Todas las partes son tóxicas, incluidas las flores y el humo de la madera.","Langford SD, Boor PJ. Oleander toxicity: an examination of human and animal toxic exposures. Toxicology. 1996;109(1):1-13."
 Nyctanthes arbor-tristis (Parijatha),Parijatha,Nyctanthes arbor-tristis,,,,,,Herbify / Kaggle ai4a-lab/herb-plant-classification-dataset
-Ocimum basilicum (kamakasturi),kamakasturi,Ocimum basilicum,,,,,,Herbify / Kaggle ai4a-lab/herb-plant-classification-dataset
-Ocimum tenuiflorum (Tulsi),Tulsi,Ocimum tenuiflorum,,,,,,Herbify / Kaggle ai4a-lab/herb-plant-classification-dataset
-Papaver somniferum (Poppy seed_Gasagase),Poppy seed_Gasagase,Papaver somniferum,,,,,,Herbify / Kaggle ai4a-lab/herb-plant-classification-dataset
+Ocimum basilicum (kamakasturi),kamakasturi,Ocimum basilicum,,Hoja,La revisión resume el uso tradicional de la hoja como hierba culinaria y digestiva.,,,Singletary KW. Basil: a brief summary of potential health benefits. Nutr Today. 2018;53(2):92-97.
+Ocimum tenuiflorum (Tulsi),Tulsi,Ocimum tenuiflorum,,Hoja,La monografía de la OMS recoge el uso tradicional de la hoja en tos y resfriados.,,,World Health Organization. WHO monographs on selected medicinal plants. Vol. 2. Geneva: WHO; 2002. Folium Ocimi Sancti.
+Papaver somniferum (Poppy seed_Gasagase),Poppy seed_Gasagase,Papaver somniferum,,"Planta completa, sobre todo el látex",No se registra un uso de campo. La adormidera está fiscalizada porque el látex es materia prima de opiáceos.,,El cultivo y el látex están sujetos a control. Las semillas alimentarias no equivalen a usar la planta.,United Nations. Single Convention on Narcotic Drugs. New York: United Nations; 1961. Papaver somniferum.
 Phaseolus vulgaris (Beans),Beans,Phaseolus vulgaris,,,,,,Herbify / Kaggle ai4a-lab/herb-plant-classification-dataset
 Piper betle (Betel),Betel,Piper betle,,,,,,Herbify / Kaggle ai4a-lab/herb-plant-classification-dataset
 Pongamia pinnata (Pongamia_Honge),Pongamia_Honge,Pongamia pinnata,,,,,,Herbify / Kaggle ai4a-lab/herb-plant-classification-dataset
-Psidium guajava (Guava),Guava,Psidium guajava,,,,,,Herbify / Kaggle ai4a-lab/herb-plant-classification-dataset
+Psidium guajava (Guava),Guava,Psidium guajava,,Hoja,La revisión señala que el uso tradicional más documentado de la hoja es en diarrea y disentería.,,,"Pérez Gutiérrez RM, Mitchell S, Vargas Solís R. Psidium guajava: a review of its traditional uses, phytochemistry and pharmacology. J Ethnopharmacol. 2008;117(1):1-27."
 Punica granatum (Pomoegranate),Pomoegranate,Punica granatum,,,,,,Herbify / Kaggle ai4a-lab/herb-plant-classification-dataset
-Ricinus communis (Castor),Castor,Ricinus communis,,,,,,Herbify / Kaggle ai4a-lab/herb-plant-classification-dataset
+Ricinus communis (Castor),Castor,Ricinus communis,,Semilla,Se ha usado el aceite de la semilla como laxante. La semilla cruda no se usa: es tóxica.,,La semilla sin procesar contiene ricina. El aceite medicinal no se prepara en campo.,"Worbs S, Köhler K, Pauly D, Avondet MA, Schaer M, Dorner MB, Dorner BG. Ricinus communis intoxications in human and veterinary medicine—a summary of real cases. Toxins. 2011;3(10):1332-1372."
 Rosa rubiginosa (Rose),Rose,Rosa rubiginosa,,,,,,Herbify / Kaggle ai4a-lab/herb-plant-classification-dataset
 Santalum Album (Sandalwood),Sandalwood,Santalum Album,,,,,,Herbify / Kaggle ai4a-lab/herb-plant-classification-dataset
 Saraca asoca (Ashoka),Ashoka,Saraca asoca,,,,,,Herbify / Kaggle ai4a-lab/herb-plant-classification-dataset
@@ -53,6 +53,33 @@ Spinacia oleracea (Palak(Spinach)),Palak(Spinach),Spinacia oleracea,,,,,,Herbify
 Syzygium Jambos (Rose Apple),Rose Apple,Syzygium Jambos,,,,,,Herbify / Kaggle ai4a-lab/herb-plant-classification-dataset
 Syzygium cumini (Nerale),Nerale,Syzygium cumini,,,,,,Herbify / Kaggle ai4a-lab/herb-plant-classification-dataset
 Tabernaemontana Divaricata (Crape Jasmine),Crape Jasmine,Tabernaemontana Divaricata,,,,,,Herbify / Kaggle ai4a-lab/herb-plant-classification-dataset
-Tamarindus indica (Tamarind),Tamarind,Tamarindus indica,,,,,,Herbify / Kaggle ai4a-lab/herb-plant-classification-dataset
+Tamarindus indica (Tamarind),Tamarind,Tamarindus indica,,Pulpa del fruto,"El estudio describe patrones de uso tradicional de la pulpa, sobre todo digestivos, en medicina africana.",,,"Havinga RM, Hartl A, Putscher J, Prehsler S, Buchmann C, Vogl CR. Tamarindus indica L. (Fabaceae): patterns of use in traditional African medicine. J Ethnopharmacol. 2010;127(3):573-588."
 Tinospora cordifolia (Amruthaballi),Amruthaballi,Tinospora cordifolia,,,,,,Herbify / Kaggle ai4a-lab/herb-plant-classification-dataset
 Wrightia tinctoria (Badipala),Badipala,Wrightia tinctoria,,,,,,Herbify / Kaggle ai4a-lab/herb-plant-classification-dataset
+Aloe vera,Aloe vera,Aloe vera,,Gel de la hoja,La monografía de la OMS recoge el uso tópico tradicional del gel en heridas leves y quemaduras menores.,,El látex amarillo de la hoja es un laxante fuerte y no es el gel que describe la monografía.,World Health Organization. WHO monographs on selected medicinal plants. Vol. 1. Geneva: WHO; 1999. Aloe vera gel.
+Baccharis latifolia,Chilca,Baccharis latifolia,,,,,,
+Bixa orellana,Achiote,Bixa orellana,,Semillas,"La revisión recoge usos populares de las semillas como colorante y, entre otros, en heridas, fiebre y diarrea.",,,"Vilar DA et al. Traditional uses, chemical constituents, and biological activities of Bixa orellana L.: a review. ScientificWorldJournal. 2014;2014:857292."
+Bocconia frutescens,Trompeto,Bocconia frutescens,,,,,,
+Calendula officinalis,Caléndula,Calendula officinalis,,Flores,La monografía de la OMS recoge el uso tópico tradicional de las flores en inflamación leve de la piel y heridas menores.,,,World Health Organization. WHO monographs on selected medicinal plants. Vol. 2. Geneva: WHO; 2002. Flos Calendulae.
+Cattleya trianae,Cattleya,Cattleya trianae,,,,,,
+Cecropia peltata,Yarumo,Cecropia peltata,,,,,,
+Ceroxylon quindiuense,Palma de cera,Ceroxylon quindiuense,,,,,,
+Dysphania ambrosioides,Paico,Dysphania ambrosioides,,Partes aéreas,El trabajo de Kliks documenta el uso tradicional como antihelmíntico. Chenopodium ambrosioides es sinónimo.,,"El aceite esencial, rico en ascaridol, es tóxico. No es un uso de campo seguro.",Kliks MM. Studies on the traditional herbal anthelmintic Chenopodium ambrosioides L.: ethnopharmacological evaluation and clinical field trials. Soc Sci Med. 1985;21(8):879-886.
+Equisetum bogotense,Cola de caballo,Equisetum bogotense,,,,,,
+Eryngium foetidum,Cilantro cimarrón,Eryngium foetidum,,Hoja,La revisión recoge el uso tradicional de la hoja como condimento y en fiebre.,,,"Paul JH, Seaforth CE, Tikasingh T. Eryngium foetidum L.: a review. Fitoterapia. 2011;82(3):302-308."
+Espeletia grandiflora,Frailejón,Espeletia grandiflora,,,,,,
+Gliricidia sepium,Matarratón,Gliricidia sepium,,,,,,
+Lippia alba,Pronto alivio,Lippia alba,,Hoja,"La revisión etnofarmacológica recoge el uso tradicional de la hoja en molestias digestivas y respiratorias, y como sedante.",,,"Hennebelle T, Sahpaz S, Joseph H, Bailleul F. Ethnopharmacology of Lippia alba. J Ethnopharmacol. 2008;116(2):211-222."
+Melissa officinalis,Toronjil,Melissa officinalis,,Hoja,La monografía de la OMS recoge el uso tradicional de la hoja para la inquietud y para facilitar el sueño.,,,World Health Organization. WHO monographs on selected medicinal plants. Vol. 2. Geneva: WHO; 2002. Folium Melissae.
+Petiveria alliacea,Anamú,Petiveria alliacea,,,,,,
+Physalis peruviana,Uchuva,Physalis peruviana,,Fruto,La revisión trata el fruto comestible andino y recoge usos tradicionales asociados a ese fruto.,,,"Puente LA, Pinto-Muñoz CA, Castro ES, Cortés M. Physalis peruviana Linnaeus, the multiple properties of a highly functional fruit: a review. Food Res Int. 2011;44(7):1733-1740."
+Phytolacca bogotensis,Cargamanto,Phytolacca bogotensis,,,,,,
+Piper aduncum,Cordoncillo,Piper aduncum,,,,,,
+Plantago major,Llantén,Plantago major,,Hoja,La revisión recoge el uso tradicional de la hoja fresca sobre heridas e inflamación de la piel.,,,"Samuelsen AB. The traditional uses, chemical constituents and biological activities of Plantago major L. A review. J Ethnopharmacol. 2000;71(1-2):1-21."
+Quercus humboldtii,Roble andino,Quercus humboldtii,,,,,,
+Ruta graveolens,Ruda,Ruta graveolens,,,,,,
+Salvia rosmarinus,Romero,Salvia rosmarinus,,Hoja,"La revisión parte de los usos etnofarmacológicos de la hoja y se centra en el aceite esencial, el ácido carnósico y el ácido rosmarínico. Rosmarinus officinalis es sinónimo.",,,"Andrade JM, Faustino C, Garcia C, Ladeiras D, Reis CP, Rijo P. Rosmarinus officinalis L.: an update review of its phytochemistry and biological activity. Future Sci OA. 2018;4(4):FSO283."
+Sambucus nigra,Saúco,Sambucus nigra,,Flores,La monografía de la OMS recoge el uso tradicional de las flores en resfriados.,,Los frutos verdes y otras partes no corresponden a esa monografía de la flor.,World Health Organization. WHO monographs on selected medicinal plants. Vol. 2. Geneva: WHO; 2002. Flos Sambuci.
+Solanum quitoense,Lulo,Solanum quitoense,,,,,,
+Theobroma cacao,Cacao,Theobroma cacao,,Semillas,El artículo histórico recoge el uso tradicional mesoamericano de la bebida de cacao.,,,"Dillinger TL, Barriga P, Escárcega S, Jimenez M, Salazar Lowe D, Grivetti LE. Food of the gods: cure for humanity? A cultural history of the medicinal and ritual use of chocolate. J Nutr. 2000;130(8S Suppl):2057S-2072S."
+Weinmannia tomentosa,Encenillo,Weinmannia tomentosa,,,,,,

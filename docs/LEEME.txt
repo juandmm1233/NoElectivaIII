@@ -1,0 +1,10 @@
+Esta carpeta es la de la entrega escrita.
+
+Falta subir, cuando estén listos:
+
+- el informe de auditoría en PDF
+- el deck de la sustentación
+- las capturas de la app
+
+El cuaderno de la auditoría de la Semana 15 tampoco está en el repositorio.
+Cuando exista, va en notebooks/.
