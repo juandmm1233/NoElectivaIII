@@ -1,84 +1,104 @@
-# Clasificación de plantas medicinales
+# Identificación de plantas medicinales
 
-Entrenamiento de una red para identificar especies del dataset Herbify.
-La copia para entrenar en otro PC está en `para_companero/` y usa **MobileNetV2** (modelo ligero, con pesos de ImageNet).
+La app reconoce una foto de una planta y devuelve la especie más probable. El modelo que va en el teléfono es un MobileNetV2 de 29 especies de Colombia y de huerta (Tolima primero, luego Colombia). Se entrenó con transfer learning desde ImageNet, en dos fases, sobre fotos de iNaturalist con licencia abierta y fotos de huerta del equipo. El dataset no se sube: pesa demasiado.
 
-El dataset de esa copia ya viene partido y no hay que volver a dividirlo:
+Hay otras corridas (Herbify, de la India, y redes más pesadas) guardadas en `notebooks/` y dentro de la app, que compara varios modelos. El archivo de la entrega es uno solo: `model/modelo.tflite`.
 
-- `para_companero/dataset/train`: 3408 imágenes
-- `para_companero/dataset/val`: 734 imágenes
-- `para_companero/dataset/test`: 761 imágenes
-- 57 especies, split 70/15/15, semilla 42
+## Integrantes
 
-No hace falta GPU ni cuenta de Kaggle. En CPU el entrenamiento completo suele tardar entre 2 y 4 horas.
+- juandmm1233
 
-## Requisitos
+El repositorio menciona un segundo integrante, que entrenó la otra arquitectura sobre el mismo split de Herbify. Su nombre no está escrito en el código ni en los commits.
 
-- Windows 10 u 11
-- Python 3.10 o 3.11 de 64 bits  
-  En el instalador hay que marcar **Add python.exe to PATH**. Python 3.12 puede fallar al instalar TensorFlow.
+## Métricas finales
 
-## Cómo ejecutarlo
+Medidas sobre el conjunto de prueba del modelo regional de 29 clases (2.201 imágenes, split 70/15/15, semilla 42). El archivo es `model/modelo.tflite`, float16.
 
-Abre PowerShell, clona el repositorio y entra en la carpeta del entrenamiento ligero:
+| Métrica | Valor |
+| --- | --- |
+| F1 ponderado | 0,681 |
+| Accuracy | 68,0 % |
+| Top-3 | 85,4 % |
+| Tamaño | 4,37 MB |
+| Latencia (CPU de desarrollo) | 9,0 ms de mediana |
+
+La latencia del teléfono no está medida. El valor de la tabla es de esta máquina: TensorFlow Lite con XNNPACK, entrada 224×224, 30 corridas después de 5 de calentamiento (media 9,8 ms, mínimo 7,1 ms). No sustituye una medición en el Pixel.
+
+## Cómo instalar la app
+
+Hace falta Android Studio y el Android SDK 35. La app pide Android 8 (minSdk 26) o superior. Está pensada para un Pixel 7 Pro con Android 13.
+
+1. Clona el repositorio.
+2. Android Studio → Open → la carpeta `app/`.
+3. Espera a que baje el Gradle wrapper (8.13) y sincronice.
+4. Ejecuta el módulo `app` en el teléfono.
+
+Los modelos que la app compara en el dispositivo están en `app/app/src/main/assets/modelos/`. Funcionan sin red. `model/modelo.tflite` es la copia de entrega del MobileNetV2 regional; las etiquetas, en el mismo orden, están en `model/labels.txt`.
+
+## Cómo ejecutar el notebook
+
+El cuaderno principal del entrenamiento Herbify es `notebooks/entrenamiento_plantas_medicinales.ipynb`. El regional está en `notebooks/entrenamiento_regional_colombia.ipynb`. Hace falta Python 3.10 o 3.11 de 64 bits. Python 3.12 puede fallar al instalar TensorFlow.
 
 ```powershell
 git clone https://github.com/juandmm1233/NoElectivaIII.git
-cd NoElectivaIII\para_companero
+cd NoElectivaIII
 python -m venv .venv
 .venv\Scripts\activate
 python -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-Primero comprueba que el entorno arranca. Esto corre 1 época y **no** sirve para el informe:
+Abre Jupyter o VS Code con la raíz del repositorio como directorio de trabajo. Los cuadernos usan `Path.cwd()` y buscan `dataset/` o `regional_colombia/` ahí, no dentro de `notebooks/`.
 
-```powershell
-python entrenar_ligero.py --prueba
-```
+`notebooks/evidencia_entrenamientos.ipynb` junta las corridas ya hechas, con las figuras en las salidas. Ábrelo para leerlo. No vuelvas a ejecutar sus celdas: al correrlas se borra la figura guardada.
 
-Cuando esa prueba termine sin errores, lanza el entrenamiento del trabajo:
+## Datasets
 
-```powershell
-python entrenar_ligero.py
-```
+No están en el repositorio.
 
-Si el PC se queda sin memoria, corta con Ctrl+C y relanza con un lote más chico:
+**Herbify (India).** [Herb (Plant) Classification Dataset](https://www.kaggle.com/datasets/ai4a-lab/herb-plant-classification-dataset), de Kaggle, `ai4a-lab/herb-plant-classification-dataset`. Son fotos de estudio, fondo bastante uniforme, con el nombre científico y el común en la carpeta. El conjunto trae 91 clases y 6.104 imágenes. El entrenamiento usa las 57 clases que tienen al menos 50 fotos (4.903 imágenes): 3.408 train, 734 validación y 761 test. La lista de esas 57 clases está en `app/app/src/main/assets/clases.json`.
 
-```powershell
-python entrenar_ligero.py --batch 8
-```
+**Regional (Colombia / Tolima).** Fotos Research Grade de iNaturalist con licencia CC0, CC-BY, CC-BY-SA o CC-BY-NC, más fotos de huerta del equipo. 10.201 train, 2.178 validación y 2.201 test. Estas son las 29 clases del modelo de `model/`, en el orden de `labels.txt`:
 
-La primera ejecución descarga los pesos de ImageNet (unos 10 MB).
+- Aloe vera (aloe vera)
+- Baccharis latifolia (chilca)
+- Bixa orellana (achiote)
+- Bocconia frutescens (trompeto)
+- Calendula officinalis (calendula)
+- Cattleya trianae (cattleya)
+- Cecropia peltata (yarumo)
+- Ceroxylon quindiuense (palma de cera)
+- Dysphania ambrosioides (paico)
+- Equisetum bogotense (cola de caballo)
+- Eryngium foetidum (cilantro cimarron)
+- Espeletia grandiflora (frailejon)
+- Gliricidia sepium (matarraton)
+- Lippia alba (pronto alivio)
+- Melissa officinalis (toronjil)
+- Moringa oleifera (moringa)
+- Petiveria alliacea (anamu)
+- Physalis peruviana (uchuva)
+- Phytolacca bogotensis (cargamanto)
+- Piper aduncum (cordoncillo)
+- Plantago major (llanten)
+- Psidium guajava (guayaba)
+- Quercus humboldtii (roble andino)
+- Ruta graveolens (ruda)
+- Salvia rosmarinus (romero)
+- Sambucus nigra (sauco)
+- Solanum quitoense (lulo)
+- Theobroma cacao (cacao)
+- Weinmannia tomentosa (encenillo)
 
-## Qué devuelve
+## Video
 
-Al terminar, la carpeta `para_companero/resultados/` queda con:
+Enlace al video: pendiente de publicar.
 
-| Archivo | Contenido |
+## Dónde está cada cosa
+
+| Ruta | Contenido |
 | --- | --- |
-| `modelo_mobilenetv2.h5` | Modelo entrenado |
-| `metricas_mobilenetv2.json` | Accuracy de test, top-3, tiempo, parámetros y tamaño |
-| `reporte_mobilenetv2.txt` | Precisión y recall por especie |
-| `curvas_mobilenetv2.png` | Accuracy y loss de las dos fases |
-| `matriz_mobilenetv2.png` | Matriz de confusión |
-| `clases.json` | Orden de las 57 clases |
-
-El número para comparar con el otro modelo es `accuracy_test` dentro de `metricas_mobilenetv2.json`.
-
-## Cómo entrena
-
-1. Fase 1: MobileNetV2 congelado, Adam `1e-3`, hasta 20 épocas.
-2. Fase 2: se descongelan las últimas 40 capas, Adam `1e-5`, hasta 15 épocas.
-3. Early stopping sobre `val_accuracy` (paciencia 5). Si `val_loss` se estanca, baja el learning rate.
-4. La augmentación (giros, rotación, zoom, desplazamiento, contraste y brillo) solo se aplica en entrenamiento.
-
-`fichas_medicinales.csv` es la tabla de usos. El modelo solo identifica la especie.
-
-## Notebook del otro equipo
-
-`entrenamiento_plantas_medicinales.ipynb` es el flujo con TensorFlow DirectML de la máquina principal. Sus dependencias están en el `requirements.txt` de la raíz. Las imágenes de esa copia local no se suben al repositorio.
-
-## Subset regional (Colombia / Tolima)
-
-Para el impacto local que pidió el curso, hay un flujo aparte en `regional_colombia/`. Baja fotos de iNaturalist (Tolima primero, Colombia si faltan) y entrena otro MobileNetV2. No mezcla esas imágenes con Herbify. Ver `regional_colombia/LEEME.md`.
+| `notebooks/` | Cuadernos del proyecto. Falta el de la auditoría de la Semana 15. |
+| `model/` | `modelo.tflite` y `labels.txt` |
+| `app/` | Código de la app Android (Kotlin y Jetpack Compose) |
+| `docs/` | Informe de auditoría (PDF), deck y capturas. Todavía no están los archivos. |
